@@ -1,0 +1,48 @@
+// ng Table SCSS
+.p-datatable .p-datatable-thead > tr > th {
+    text-align: left;
+    padding: 0.5rem 0.5rem !important;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+    font-weight: 500 !important;
+    color: $primary-color !important;
+    background: $primary-light !important;
+    transition: box-shadow 0.2s;
+  }
+  .p-datatable .p-datatable-tbody > tr > td {
+    text-align: left;
+    border: 1px solid #dee2e6;
+    border-width: 0px 0px 1px 0px;
+    padding: 0.2rem 0.5rem !important;
+  }
+//Filters in Table
+.p-column-filter-menu-button {
+  width: 1rem !important;
+  height: 1rem !important;
+  color: #6c757d;
+  border: 0 none;
+  background: transparent;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.p-datatable-table {
+  word-break: break-word;
+}
+
+//Common Table CSS
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 3px;
+  padding-left: 8px;
+  font-size: 13px;
+  color: #303e67;
+}
+

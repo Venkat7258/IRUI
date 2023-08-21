@@ -1,0 +1,76 @@
+<div *ngIf="isAddRegulationStatusCosing === true;then addandUpdateRegulationStatusCosing else viewRegulationStatusCosing"></div>
+<ng-template #addandUpdateRegulationStatusCosing>
+    <p-card>
+        <div class="col-md-12 p-0">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Regulations Status</label>
+                        <input type="text" [(ngModel)]="objregulationStatusCosing.regulationsStatus" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Color Code</label>
+                        <input type="text" [(ngModel)]="objregulationStatusCosing.colorCode" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Regulation Description</label>
+                        <input type="text" [(ngModel)]="objregulationStatusCosing.regulationDescription" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Sequence Number</label>
+                        <input type="number" [(ngModel)]="objregulationStatusCosing.sequenceNumber"  />
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <button class="b-width-85 m-r-10 fc-btn" type="button"
+                        (click)="SaveAndUpdateRegulationStatusCosing(isaction==true?'Add':'Edit')">{{isaction==true?'Add':'Update'}}</button>
+                    <button class="b-width-85 m-r-10 fc-btn" type="button" (click)="onRegulationStatusCosingClose()">Close</button>
+                </div>
+            </div>
+        </div>
+    </p-card> 
+</ng-template>
+<ng-template #viewRegulationStatusCosing>
+<p-card>
+    <div class="row">
+        <div class="col-md-6">
+            <!-- <p-checkbox value="" label="Show Disabled RegulationStatusCosing" (onChange)="ShowActiveRegulationStatusCosing($event)" ></p-checkbox> -->
+        </div>
+        <div class="col-md-6 m-b-10 text-right">
+            <!-- <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Add RegulationStatusCosing" 
+            (click)="AddAndUpdateRegulationStatusCosing('Add')"  class="p-button-outlined"></button>  -->
+            <p-button label="Add RegulationStatusCosing" icon="pi pi-plus" iconPos="left" (onClick)="AddAndUpdateRegulationStatusCosing('Add')" class="m-r-10"></p-button>    
+        </div>
+    </div>
+    <p-table [value]="regulationStatusCosing">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>RegulationsStatus</th>
+                <th>ColorCode</th>
+                <th>RegulationDescription</th>
+                <th>SequenceNumber</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-regulationStatusCosing>
+            <tr>
+                <td>{{regulationStatusCosing.regulationsStatus}}</td>
+                <td>{{regulationStatusCosing.colorCode}}</td>
+                <td>{{regulationStatusCosing.regulationDescription}}</td>
+                <td>{{regulationStatusCosing.sequenceNumber}}</td>
+                <td><p-splitButton label="Actions" [model]="regulationStatusCosingItems"
+                    (onDropdownClick)="HandleActionsClickRegulationStatusCosing(regulationStatusCosing,'regulationStatusCosing')"
+                    styleClass="p-button-raised mr-2 mb-2"></p-splitButton></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+</ng-template>

@@ -1,0 +1,79 @@
+
+//tab bar
+// .reg-single{
+//     height: 425px;
+//     overflow: scroll;
+// }
+#header-wrap {
+	background-color: #fafafa;
+	height: 40px;
+	position: sticky;
+	top: 50px;
+	left: 0px;
+	width: 100%;
+	z-index: 100;
+	padding: 6px;
+	border-radius: 7px;
+}
+
+#header ul {
+	position: relative;
+}
+
+.header-btn {
+	width: auto;
+	float: left;
+	padding: 3px 15px;
+	list-style: none;
+	color: #8f8f8f;
+	text-align: center;
+	cursor: pointer;
+	text-transform: capitalize;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+
+.header-btn:hover,
+.header-btn:active {
+	color: #FFF;
+	background: #b19a8f !important;
+
+}
+
+.header-btn:active {
+	background-color: yellow;
+}
+
+.header-btn2 {
+	border-right: 1px solid #ccc;
+	// border-left: 1px solid #ccc;
+}
+	
+.reg-menu {
+	margin-top: -88px;
+}
+
+#substancedetails,
+#flagdetails,
+#physicalproperties,
+#toxicitydata {
+	margin-top: 200px !important;
+	width: 90%;
+	height: 400px;
+	margin-left: 5%;
+	padding: 50px;
+	box-sizing: border-box;
+	border-radius: 10px;
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+

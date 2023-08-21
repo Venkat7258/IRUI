@@ -1,0 +1,67 @@
+.breadcrumb-padding{
+    border-radius: 5px;
+    background: #fff;
+}
+
+.breadcrumb {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    // padding: 0.75rem 0.25rem;
+    margin-bottom: 0rem;
+    list-style: none;
+    border-radius: 0.25rem;
+    font-size: $font-size-12;
+  }
+  
+  .breadcrumb-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0.5rem;
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 0.5rem;
+    color: #6c757d;
+    content: "/";
+  }
+  .breadcrumb-item + .breadcrumb-item:hover::before {
+    text-decoration: underline;
+  }
+  .breadcrumb-item + .breadcrumb-item:hover::before {
+    text-decoration: none;
+  }
+  .breadcrumb-item.active{
+    font-size: $font-size-16;
+    font-weight: 500;
+    color: #283252 !important;
+  }
+  .breadcrumb-item-head a{
+    font-size: $font-size-16;
+    font-weight: 500;
+    color: #283252 !important;
+  }
+
+  .list-back a{
+    background: $primary-color;
+    padding: 6px;
+    border-radius: 6px;
+    color:$white;
+    font-size: $font-size-12;
+    border: 1px solid $primary-color;
+  }
+ 
+  .list-back a:hover{
+    background: $white;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid $primary-color;
+    
+  }
+  
+  

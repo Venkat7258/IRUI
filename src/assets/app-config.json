@@ -1,0 +1,5 @@
+{
+    "apiUrl": "http://localhost:20613/api/",
+    "irApiUrl": "http://localhost:20613/api/",
+    "fcApiUrl": "http://localhost:48918/api/"
+}

@@ -1,0 +1,86 @@
+<div *ngIf="isAddImportTypesCosmetics === true;then addandUpdateImportTypesCosmetics else viewImportTypesCosmetics">
+</div>
+<ng-template #addandUpdateImportTypesCosmetics>
+    <p-card>
+        <div class="col-md-12 p-0">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">ImportTypeName</label>
+                        <input type="text" [(ngModel)]="objImportTypesCosmetics.importTypeName" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">ImportTypeCode</label>
+                        <input type="number" [(ngModel)]="objImportTypesCosmetics.importTypeCode" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">SequenceNumber</label>
+                        <input type="number" [(ngModel)]="objImportTypesCosmetics.sequenceNumber" />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Description</label>
+                        <input type="text" [(ngModel)]="objImportTypesCosmetics.description" pInputText />
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <button pButton type="button" class="b-width-85 m-r-10 fc-btn"
+                        (click)="SaveAndUpdateImportTypesCosmetics(isaction==true?'Add':'Edit')" >{{isaction==true?'Add':'Update'}}
+                    </button>
+                    <button pButton type="button" class="b-width-85 m-r-10 fc-btn" (click)="onImportTypesCosmeticsClose()">Close</button>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</ng-template>
+<ng-template #viewImportTypesCosmetics>
+    <p-card>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <p-checkbox  value= "" label="Show Disabled ImportTypesCosmetics" (onchange)="ShowActiveImportTypesCosmetics($event)" >
+                </p-checkbox>
+                 -->
+            </div>
+            <div class="col-md-6 m-b-10 text-right">
+                <!-- <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Add ImportTypesCosmetics"
+                    (click)="AddAndUpdateImportTypesCosmetics('Add')" class="p-button-outlined"></button>
+                     -->
+                <p-button label="Add ImportTypesCosmetics" icon="pi pi-plus" iconPos="left"
+                    (onClick)="AddAndUpdateImportTypesCosmetics('Add')" class="m-r-10"></p-button>
+            </div>
+        </div>
+        <p-table [value]="importTypesCosmetics">
+            <ng-template pTemplate="header">
+                <tr>
+
+                    <th>ImportTypeName</th>
+                    <th>ImportTypeCode</th>
+                    <th>SequenceNumber</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-importTypesCosmetics>
+                <tr>
+
+                    <td>{{importTypesCosmetics.importTypeName}}</td>
+                    <td>{{importTypesCosmetics.importTypeCode}}</td>
+                    <td>{{importTypesCosmetics.sequenceNumber}}</td>
+                    <td>{{importTypesCosmetics.description}}</td>
+                    <td><p-splitButton label="Actions" [model]="ImportTypesCosmeticsitems"
+                            (onDropdownClick)="HandleActionsClickImportTypesCosmetics(importTypesCosmetics,'ImportTypesCosmetics')"
+                            styleClass="p-button-raised mr-2 mb-2"></p-splitButton></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+</ng-template>

@@ -1,0 +1,70 @@
+<!-- Region -->
+<div *ngIf="isAddRegion === true;then addAndUpdateRegion else viewRegion"></div>
+<ng-template #addAndUpdateRegion>
+    <p-card>
+        <div class="col-md-12 p-0">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Region Name</label>
+                        <input type="text" [(ngModel)]="objRegion.regionName" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Description</label>
+                        <input type="text" [(ngModel)]="objRegion.description" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Defination</label>
+                        <input type="text" [(ngModel)]="objRegion.defination" pInputText />
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <button  type="button" class="b-width-85 m-r-10 fc-btn"
+                        (click)="SaveAndUpdateRegion(isaction==true?'Add':'Edit')" >{{isaction==true?'Add':'Update'}}</button>
+                    <button  type="button"  class="b-width-85 m-r-10 fc-btn" (click)="onRegionClose()"> Close</button>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</ng-template>
+<ng-template #viewRegion>
+    <p-card>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <p-checkbox value="" label="Show Disabled Region" (onChange)="ShowActiveRegion($event)" ></p-checkbox> -->
+            </div>
+            <div class="col-md-6 m-b-10 text-right">
+                <!-- <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Add Region" (click)="AddAndUpdateRegion('Add')"
+                    class="p-button-outlined"></button> -->
+                <p-button label="Add Region" icon="pi pi-plus" iconPos="left" (onClick)="AddAndUpdateRegion('Add')"
+                    class="m-r-10"></p-button>
+            </div>
+        </div>
+        <p-table [value]="regions">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th width="100">Region Name</th>
+                    <th width="200">Description</th>
+                    <th width="200">Defination</th>
+                    <th width="100">Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-region>
+                <tr>
+                    <td>{{region.regionName}}</td>
+                    <td>{{region.description}}</td>
+                    <td>{{region.defination}}</td>
+                    <td><p-splitButton label="Actions" [model]="regionItems"
+                            (onDropdownClick)="HandleActionsClickRegion(region,'region')"
+                            styleClass="p-button-raised mr-2 mb-2"></p-splitButton></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+</ng-template>

@@ -1,0 +1,63 @@
+<div *ngIf="isAddConditionTypes === true;then addandUpdateConditionTypes else viewConditionTypes"></div>
+<ng-template #addandUpdateConditionTypes>
+    <p-card>
+        <div class="col-md-12 p-0">
+            <div class="row">
+                <div class="col-md-4">
+
+                    <div class="form-group field">
+                        <label class="block">ConditionTypeID</label>
+                        <input type="number" [(ngModel)]="objConditionTypes.conditionTypeID" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">ConditionType</label>
+                        <input type="text" [(ngModel)]="objConditionTypes.conditionType" pInputText />
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+                        <button  type="button" class="b-width-85 m-r-10 fc-btn"
+                            (click)="SaveAndUpdateConditionTypes(isaction==true?'Add':'Edit')">{{isaction==true?'Add':'Update'}}</button>
+                        <button  type="button" class="b-width-85 m-r-10 fc-btn"  (click)="onConditionTypesClose()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</ng-template>
+<ng-template #viewConditionTypes>
+    <p-card>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <p-checkbox  value= "" label="Show Disabled ConditionTypes" (onchange)="ShowActiveConditionTypes($event)" >
+                    </p-checkbox> -->
+            </div>
+            <div class="col-md-6 m-b-10 text-right">
+                <!-- <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Add Condition Types"
+                        (click)="AddAndUpdateConditionTypes('Add')" class="p-button-outlined"></button> -->
+                <p-button label="Add ConditionTypes" icon="pi pi-plus" iconPos="left"
+                    (onClick)="AddAndUpdateConditionTypes('Add')" class="m-r-10"></p-button>
+            </div>
+        </div>
+        <p-table [value]="conditionTypes">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>ConditionTypeID</th>
+                    <th>ConditionType</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-conditionTypes>
+                <tr>
+                    <td>{{conditionTypes.conditionTypeID}}</td>
+                    <td>{{conditionTypes.conditionType}}</td>
+                    <td><p-splitButton label="Actions" [model]="ConditionTypesitems"
+                            (onDropdownClick)="HandleActionsClickConditionTypes(conditionTypes,'ConditionTypes')"
+                            styleClass="p-button-raised mr-2 mb-2"></p-splitButton></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+</ng-template>

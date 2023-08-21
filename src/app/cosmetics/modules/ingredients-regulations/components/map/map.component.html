@@ -1,0 +1,230 @@
+
+<div class="row ml-0 m-t-10">
+    <div class="col-md-9 p-0">
+        <h4 class="seeall-heading m-b-5 m-t-10">Global Cosmetics Regulations</h4>
+        <p>Mouse over on country to view details</p>
+            <div id="root" style="width:100%; height: 400px;"></div>
+    </div>
+
+    <div class="col-md-3 m-t-30">
+        <div style="display: flex; margin-top:9px;">
+            <h5 class="m-b-0 m-r-10 RegCountBtn" style="padding:5px; ">No. of Countries: 75  </h5>
+            <h5 class="m-b-0 pull-right m-r-10 RegCountBtn" style="padding:5px;">No. of Markets: 32  </h5>
+        </div>
+
+        <div class="chart-dylegends customChart-dylegends p-l-0">
+            <span> <span class="legendbox" style="background:#418424;"></span> Approved (2)</span>
+            <span> <span class="legendbox" style="background:#8f7518;"></span> Recommended (1)</span> 
+            <span> <span class="legendbox" style="background:#FFD700;"></span> Restricted Use (22)</span> 
+            <span> <span class="legendbox" style="background:#F55A47;"></span> Prohibited (0)</span> 
+            <span> <span class="legendbox" style="background:#5D6D7E;"></span> Not Recommended (0)</span> 
+            <span> <span class="legendbox" style="background:#a2a2f9;"></span> Listed (7)</span> 
+            <span> <span class="legendbox" style="background:#000080;"></span> Recommended with restriction (0)</span>   
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-small" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="hName"> </h5>
+                <button type="button" class="close" data-dismiss="modal" (click)="showChildModal()"
+                    aria-label="Close">&times;</button>
+            </div>
+            <div>
+                <div class="modal-body" style="height: calc(100vh - 120px) !important;">
+                        <div class="col-md-12 p-0">
+                            <p-panel header="Cosmetics Regulatory Information" [toggleable]="true">
+                                <table class="table" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td class="width15 font500"><label>Regulatory Status</label></td>
+                                            <td class="width70"><span>{{countryRegulations.regulatoryStatus}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500">
+                                                <label>Regulatory Description</label>
+                                            </td>
+                                            <td class="width70">
+                                                <span>{{countryRegulations.regulatoryDescription}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500">
+                                                <label>Labeling Requirement</label>
+                                            </td>
+                                            <td class="width70"><span>{{countryRegulations.labelingRequirement}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500">
+                                                <label>Reference</label>
+                                            </td>
+                                            <td class="width70"><span>{{countryRegulations.referenceLinks}}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500">
+                                                <label>Last Reviewed/Updated</label>
+                                            </td>
+                                            <td class="width70"><span></span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p-panel>
+                            <p-panel *ngIf="isChemRegData" header="Chemical Regulatory Information" [toggleable]="true">
+                                <table class="table" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td class="width15 font500">
+                                                <label>Country </label>
+                                            </td>
+                                            <td class="width70">
+                                                {{chemRegData.country}}<span></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500"><label>Region </label></td>
+                                            <td class="width70">
+                                                {{chemRegData.region}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500"><label>Ingredient Name</label></td>
+                                            <td class="width70">
+                                                <span> {{chemRegData.ingredientName}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500"><label>Classification</label></td>
+                                            <td class="width70">
+                                                <span> {{chemRegData.classification}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500">
+                                                <label>Restrictions</label>
+                                            </td>
+                                            <td class="width70">
+                                                <span> {{chemRegData.restrictions}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500">
+                                                <label>Restrictions Description</label>
+                                            </td>
+                                            <td class="width70">
+                                                <span> {{chemRegData.restrictionsDescription}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="width15 font500">
+                                                <label>Regulatory Status</label>
+                                            </td>
+                                            <td class="width70">
+                                                <span> {{chemRegData.restrictions}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </p-panel>
+                            <p-accordion>
+                                <p-panel header="Ingredient Specific Information" [toggleable]="true">
+                                    <table class="table" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="width15 font500"><label>Safety Considerations</label></td>
+                                                <td class="width70">
+                                                    <span>{{ingredientsRegulationobj.safetyConsiderations}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500"><label>Weight of Evidence</label></td>
+                                                <td class="width70">
+                                                    <span>{{ingredientsRegulationobj.weightOfEvidence}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">
+                                                    <label>Chemical Inventory Data</label>
+                                                </td>
+                                                <td class="width70">
+                                                    <span>{{ingredientsRegulationobj.chemicalInventoryData}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">
+                                                    <label>Supporting Regulatory Information</label>
+                                                </td>
+                                                <td class="width70">
+                                                    <span>{{ingredientsRegulationobj.otherRegulatoryInformation}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">
+                                                    <label>Scientific Opinion</label>
+                                                </td>
+                                                <td class="width70">
+                                                    <span>{{ingredientsRegulationobj.scientificOpinion}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">
+                                                    <label>Literature and Social Media </label>
+                                                </td>
+                                                <td class="width70">
+                                                    {{ingredientsRegulationobj.literatureSocialMedia}}<span></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500"><label>EU INCI Name </label></td>
+                                                <td class="width70">
+                                                    <!-- <span *ngFor="let item of ingredientsRegulationobj.euInciNames;">
+                                                {{item.euInciName}}
+                                            </span> -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">
+                                                    <label>US INCI Name </label>
+                                                </td>
+                                                <td class="width70">
+                                                    <!-- <span *ngFor="let item of ingredientsRegulationobj.euInciNames;">
+                                                {{item.euInciName}}
+                                            </span> -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">
+                                                    <label>Japanese Name</label>
+                                                </td>
+                                                <td class="width70">
+                                                    <!-- <span *ngFor="let item of ingredientsRegulationobj.euInciNames;">
+                                                {{item.euInciName}}
+                                            </span> -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">
+                                                    <label>Chinese Name</label>
+                                                </td>
+                                                <td class="width70">
+                                                    <!-- <span *ngFor="let item of ingredientsRegulationobj.chineseNames;">
+                                                {{item.chineseName}}
+                                            </span> -->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </p-panel>
+                            </p-accordion>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.p-datatable>.p-datatable-wrapper {
+    overflow: auto !important;
+    height: 530px !important;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+}
+
+@media screen and (max-width: 64em) {
+    :host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+        top: 0px;
+    }
+}

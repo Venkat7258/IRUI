@@ -1,0 +1,88 @@
+<div *ngIf="isAddRegulationStatusChem === true;then addandUpdateRegulationStatusChem else viewRegulationStatusChem">
+</div>
+<ng-template #addandUpdateRegulationStatusChem>
+    <p-card>
+        <div class="col-md-12 p-0">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">InventoryStatus</label>
+                        <input type="text" [(ngModel)]="objRegulationStatusChem.inventoryStatus" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">InventoryDescription</label>
+                        <input type="text" [(ngModel)]="objRegulationStatusChem.inventoryDescription" pInputText />
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">ChemColorCode</label>
+                        <input type="text" [(ngModel)]="objRegulationStatusChem.chemColorCode" pInputText />
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">ChemSequenceNumber</label>
+                        <input type="number" [(ngModel)]="objRegulationStatusChem.chemSequenceNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <button class="b-width-85 m-r-10 fc-btn" type="button"
+                        (click)="SaveAndUpdateRegulationStatusChem(isaction==true?'Add':'Edit')">{{isaction==true?'Add':'Update'}}</button>
+                    <button type="button" (click)="onRegulationStatusChemClose()" class="b-width-85 m-r-10 fc-btn">Close</button>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</ng-template>
+<ng-template #viewRegulationStatusChem>
+    <p-card>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <p-checkbox  value= "" label="Show Disabled RegulationStatusChem" (onchange)="ShowActiveRegulationStatusChem($event)" ></p-checkbox> -->
+            </div>
+            <div class="col-md-6 m-b-10 text-right">
+                <!--  <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Add RegulationStatusChem"
+                    (click)="AddAndUpdateRegulationStatusChem('Add')" class="p-button-outlined"></button> -->
+                    <p-button label="Add RegulationStatusChem" icon="pi pi-plus" iconPos="left" (onClick)="AddAndUpdateRegulationStatusChem('Add')" class="m-r-10"></p-button>
+
+
+            </div>
+        </div>
+        <p-table [value]="regulationStatusChem">
+            <ng-template pTemplate="header">
+                <tr>
+
+                    <th>InventoryStatus</th>
+                    <th>InventoryDescription</th>
+                    <th>ChemColorCode</th>
+                    <th>ChemSequenceNumber</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-regulationStatusChem>
+                <tr>
+
+                    <td>{{regulationStatusChem.inventoryStatus}}</td>
+                    <td>{{regulationStatusChem.inventoryDescription}}</td>
+                    <td>{{regulationStatusChem.chemColorCode}}</td>
+                    <td>{{regulationStatusChem.chemSequenceNumber}}</td>
+
+                    <td><p-splitButton label="Actions" [model]="regulationStatusChemitems"
+                            (onDropdownClick)="HandleActionsClickRegulationStatusChem(regulationStatusChem,'RegulationStatusChem')"
+                            styleClass="p-button-raised mr-2 mb-2"></p-splitButton></td>
+
+
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+</ng-template>
+

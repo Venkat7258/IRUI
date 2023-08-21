@@ -1,0 +1,112 @@
+<div
+    *ngIf="isAddSubscriptionPriceDetails === true;then addAndUpdateSubscriptionPriceDetails else viewSubscriptionPriceDetails">
+</div>
+<ng-template #addAndUpdateSubscriptionPriceDetails>
+    <p-card>
+        <div class="col-md-12 p-0">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Duration</label>
+                        <input type="text" [(ngModel)]="objSubscriptionPriceDetails.duration" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Price with DFA Cosmetics</label>
+                        <input type="number" [(ngModel)]="objSubscriptionPriceDetails.pricewithDFACosmetics" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Currency</label>
+                        <input type="text" [(ngModel)]="objSubscriptionPriceDetails.currency" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Type Id</label>
+                        <input type="number" [(ngModel)]="objSubscriptionPriceDetails.typeId" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Comments</label>
+                        <input type="text" [(ngModel)]="objSubscriptionPriceDetails.comments" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Extende Days</label>
+                        <input type="number" [(ngModel)]="objSubscriptionPriceDetails.extendeDays" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Price without DFA Cosmetics</label>
+                        <input type="number" [(ngModel)]="objSubscriptionPriceDetails.pricewithoutDFACosmetics" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Price Food</label>
+                        <input type="number" [(ngModel)]="objSubscriptionPriceDetails.priceFood" />
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+                        <button class="b-width-85 m-r-10 fc-btn" type="button"
+                            (click)="SaveAndUpdateSubscriptionPriceDetails(isaction==true?'Add':'Edit')">{{isaction==true?'Add':'Update'}}</button>
+                        <button class="b-width-85 m-r-10 fc-btn" type="button"
+                            (click)="onSubscriptionPriceDetailsClose()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</ng-template>
+<ng-template #viewSubscriptionPriceDetails>
+    <p-card>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <p-checkbox value="" label="Show Disabled SubscriptionPriceDetails" (onChange)="ShowActiveSubscriptionPriceDetails($event)" ></p-checkbox> -->
+            </div>
+            <div class="col-md-6 m-b-10 text-right">
+                <!-- <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Add Subscription Price Details"
+            (click)="AddAndUpdateSubscriptionPriceDetails('Add')" class="p-button-outlined"></button> -->
+                <p-button label="Add SubscriptionPriceDetails" icon="pi pi-plus" iconPos="left"
+                    (onClick)="AddAndUpdateSubscriptionPriceDetails('Add')" class="m-r-10"></p-button>
+            </div>
+        </div>
+        <p-table [value]="subscriptionPriceDetails">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Duration</th>
+                    <th>PricewithDFACosmetics</th>
+                    <th>Currency</th>
+                    <th>TypeId</th>
+                    <th>Comments</th>
+                    <th>ExtendeDays</th>
+                    <th>PricewithoutDFACosmetics</th>
+                    <th>PriceFood</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-subscriptionPriceDetails>
+                <tr>
+                    <td>{{subscriptionPriceDetails.duration}}</td>
+                    <td>{{subscriptionPriceDetails.pricewithDFACosmetics}}</td>
+                    <td>{{subscriptionPriceDetails.currency}}</td>
+                    <td>{{subscriptionPriceDetails.typeId}}</td>
+                    <td>{{subscriptionPriceDetails.comments}}</td>
+                    <td>{{subscriptionPriceDetails.extendeDays}}</td>
+                    <td>{{subscriptionPriceDetails.pricewithoutDFACosmetics}}</td>
+                    <td>{{subscriptionPriceDetails.priceFood}}</td>
+                    <td><p-splitButton label="Actions" [model]="subscriptionPriceDetailsitems"
+                            (onDropdownClick)="HandleActionsClickSubscriptionPriceDetails(subscriptionPriceDetails,'subscriptionPriceDetails')"
+                            styleClass="p-button-raised mr-2 mb-2"></p-splitButton></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+</ng-template>

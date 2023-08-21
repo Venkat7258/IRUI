@@ -1,0 +1,25 @@
+
+
+<div class="col-md-12 p-1 ">
+    <p-card [style]="{'width': '100%', height:'553px'}">
+        <div class="col-md-12 p-0">
+            <p-tabView>
+                <p-tabPanel header="Ingredient Details ">
+                    <ng-template pTemplate="content">
+                        
+                    </ng-template>
+                </p-tabPanel>
+                <p-tabPanel header="Regulation Details">
+                    <ng-template pTemplate="content">
+                        
+                    </ng-template>
+                 </p-tabPanel>
+                <p-tabPanel header="Map View">
+                    <ng-template pTemplate="content">
+                        <app-regulations></app-regulations>
+                    </ng-template>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </p-card>
+</div>

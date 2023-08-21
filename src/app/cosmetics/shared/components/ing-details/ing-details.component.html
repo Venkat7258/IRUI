@@ -1,0 +1,784 @@
+<div class="row ml-0">
+    <div class="col-md-12 p-0 ir-bg">
+        <ul class="tabs" role="tablist">
+            <li>
+                <input type="radio" name="tabs" id="tab1" checked />
+                <label id="idSubDetails" for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">Substance
+                    Details</label>
+                <div  id="tab-content1" class="tab-content" role="tabpanel" aria-labelledby="description"
+                    aria-hidden="false">
+                    <p-scrollPanel  [style]="{width: '100%', height: '450px'}">
+                        <div class="p-t-5">
+                            <p-panel  header="General Details" [toggleable]="true">
+                                <table>
+                                    <tr>
+                                        <td class="width15 font500">Ingredient Name</td>
+                                        <td class="width70">{{objIngredients.ingredientName}}</td>
+                                    </tr>
+                                     <tr>
+                                        <td class="width15 font500">CAS No. </td>
+                                        <td class="width70">{{objIngredients.casNo}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Other CAS No. </td>
+                                        <td class="width70">{{ingredientsRegulationobj.otherCasno}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">ELINCS or EINECS Nos</td>
+                                        <td class="width70">{{ingredientsRegulationobj.einecsNos}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Description</td>
+                                        <td class="width70">{{ingredientsRegulationobj.description}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">EU INCI Name </td>
+                                        <td class="width70">
+                                            <span *ngFor="let item of ingredientsRegulationobj.euInciNames;">
+                                                {{item.euInciName}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                     </tr>
+                                </table>
+                            </p-panel>
+                            <p-panel header="Chemical Details" [toggleable]="true">
+                                <table>
+                                    <tr>
+                                        <td class="width15 font500">Substance Name </td>
+                                        <td class="width70">{{chemicalDetails.substanceName}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Substance Number </td>
+                                        <td class="width70">{{chemicalDetails.substanceNumber}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Note </td>
+                                        <td class="width70">{{chemicalDetails.note}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Molecular Formula</td>
+                                        <td class="width70">{{chemicalDetails.molecularFormula}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Molecular Weight</td>
+                                        <td class="width70">{{chemicalDetails.molecularWeight}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Structure </td>
+                                        <td class="width70">
+                                            {{chemicalDetails.structure}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Name of Substance </td>
+                                        <td class="widtd70">
+                                            {{chemicalDetails.nameofSubstance}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">MeSH Heading </td>
+                                        <td class="width70">{{chemicalDetails.meshHeading}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Synonyms </td>
+                                        <td class="width70">{{chemicalDetails.synonyms}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Systematic Name </td>
+                                        <td class="width70">{{chemicalDetails.systematicName}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Superlist Names </td>
+                                        <td class="width70">{{chemicalDetails.superlistNames}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Other Registry Numbers</td>
+                                        <td class="width70">
+                                            {{chemicalDetails.otherRegistryNumbers}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Smiles </td>
+                                        <td class="width70">
+                                            {{chemicalDetails.smiles}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Brief Profile </td>
+                                        <td class="widtd70">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Regulatory Obligations (EU)</td>
+                                        <td class="widtd70">-</td>
+                                    </tr>
+                                </table>
+                            </p-panel>
+                            <p-panel header="Toxicological Profile Data" [toggleable]="true">
+                                <table>
+                                    <tr>
+                                        <td width="20%">
+                                            <h4 class="seeall-heading-2 m-b-5 m-t-10">Threshold of Toxicological Concern
+                                                (TTC) :</h4>
+                                        </td>
+                                        <td width="15%"><strong>Cramer Classification Code</strong><br>
+                                            {{ingredientsRegulationobj.cramerClassificationCode!=""?ingredientsRegulationobj.cramerClassificationCode:"-"}}
+                                        </td>
+                                        <td width="39%"><strong>Cramer Classification Limit </strong><br>
+                                            {{ingredientsRegulationobj.cramerClassificationLimit!=""?ingredientsRegulationobj.cramerClassificationLimit:"-"}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            <h4 class="seeall-heading-2 m-b-5 m-t-10">Margin of Safety (MOS) :</h4>
+                                        </td>
+                                        <td width="15%"><strong>Oral POD NOADEL Limit</strong><br>
+                                            {{ingredientsRegulationobj.oralPodNoaelLimit}}
+                                           </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20%">
+                                            <h4 class="seeall-heading-2 m-b-5 m-t-10">Weight of Evidence Approach (WoE) :
+                                            </h4>
+                                        </td>
+                                        <td width="15%"><strong>Approach</strong><br>
+                                            {{ingredientsRegulationobj.woeApproach!=""?ingredientsRegulationobj.woeApproach:"-"}} </td>
+                                        <td width="39%"><strong>Justification </strong><br>
+                                            {{ingredientsRegulationobj.woeAssessmentJustification!=""?ingredientsRegulationobj.woeAssessmentJustification:"-"}}</td>
+                                    </tr>
+                                </table>
+                            </p-panel>
+                        </div>
+                    </p-scrollPanel>
+                 </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" id="tab2" />
+                <label   for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Flag
+                    Details</label>
+                <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="specification"
+                    aria-hidden="true">
+                    <p-scrollPanel [style]="{width: '100%', height: '450px'}">
+                        <div class="p-t-5">
+                            <p-panel header="Flag Details" [toggleable]="true">
+                                <table>
+                                    <tr>
+                                        <td class="width15 font500">Severity</td>
+                                        <td class="width70">{{flagsDetails.severity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Title</td>
+                                        <td class="width70">{{flagsDetails.title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Description</td>
+                                        <td class="width70">
+                                            {{flagsDetails.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Reference link
+                                        </td>
+                                        <td class="width70">
+                                            {{flagsDetails.referenceLink}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Regulatory Change Type
+                                        </td>
+                                        <td class="width70">{{flagsDetails.regulatoryChangeType}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500">Effective Date
+                                        </td>
+                                        <td class="width70">{{flagsDetails.createdDate}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="width15 font500"> Last Modified Date
+                                        </td>
+                                        <td class="width70">{{flagsDetails.modifiedDate}}</td>
+                                    </tr>
+                                </table>
+                            </p-panel>
+                            <div class="row ml-0 align-items-end m-b-10">
+                                <div class="col-md-8 p-l-0 justify-content-start ">
+                                    <h4 class="seeall-heading m-b-5 m-t-10">Flags History</h4>
+                                </div>
+                                <div class="col-md-4 justify-content-end  p-r-0 text-right">
+                                    <button [ngClass]="isShowFlagsHistory?'default-btn':'default-btn active'"
+                                        (click)="ShowFlagsHistory('true')">Detail View</button>
+                                    <button [ngClass]="isShowFlagsHistory?'default-btn active':'default-btn'"
+                                        (click)="ShowFlagsHistory('false')">Grid View</button>
+                                </div>
+                            </div>
+                            <div *ngIf="isShowFlagsHistory;then flagshistorygrid else flagshistorydetails"></div>
+                            <ng-template #flagshistorygrid>
+                                <p-table #fundListRef [value]="flagsHistory" [rowHover]="true" selectionMode="single">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th width="5%">Flag</th>
+                                            <th width="10%">Title</th>
+                                            <th width="30%">Description</th>
+                                            <th width="15%">Reference link</th>
+                                            <th width="10%">Regulatory Change Type</th>
+                                            <th width="10%">Effective Date</th>
+                                            <th width="10%">Created Date</th>
+                                            <th width="10%">Archived Date</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-flagsHistory>
+                                        <tr class="m-b-10">
+                                            <td>
+                                                <i *ngIf="flagsHistory.severity=='High'"
+                                                    class="pi pi-flag-fill flagred"></i>
+                                                <i *ngIf="flagsHistory.severity=='Low'"
+                                                    class="pi pi-flag-fill flagblue"></i>
+                                                <i *ngIf="flagsHistory.severity==''"
+                                                    class="pi pi-flag-fill flaggrey"></i>
+                                            </td>
+                                            <td> {{flagsHistory.title}}</td>
+                                            <td> {{flagsHistory.description}}</td>
+                                            <td> {{flagsHistory.referenceLink}}</td>
+                                            <td> {{flagsHistory.regulatoryChangeType}}</td>
+                                            <td> {{flagsHistory.effectiveDate}}</td>
+                                            <td> {{flagsHistory.createdDate}}</td>
+                                            <td> {{flagsHistory.archiveDate}}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                                
+                            </ng-template>
+                            <ng-template #flagshistorydetails>
+                                <div class="col-md-12 p-0">
+                                <!-- <ul>
+                                    <li *ngFor="let flagsHistory of flagsHistory; let i=index; "> -->
+                                   <div *ngFor="let flagsHistory of flagsHistory; let i=index; ">
+                                        <table>
+                                            <tr>
+                                                <td class="width15 font500">Flag</td>
+                                                <td class="width70"> <i *ngIf="flagsHistory.severity=='High'"
+                                                        class="pi pi-flag-fill flagred"></i>
+                                                    <i *ngIf="flagsHistory.severity=='Low'"
+                                                        class="pi pi-flag-fill flagblue"></i>
+                                                    <i *ngIf="flagsHistory.severity==''"
+                                                        class="pi pi-flag-fill flaggrey"></i>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">Title</td>
+                                                <td class="width70">{{flagsHistory.title}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">Description</td>
+                                                <td class="width70">
+                                                    {{flagsHistory.description}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">Reference link
+                                                </td>
+                                                <td class="width70">
+                                                    {{flagsHistory.referenceLink}}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">Regulatory Change Type
+                                                </td>
+                                                <td class="width70">{{flagsHistory.regulatoryChangeType}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500">Effective Date
+                                                </td>
+                                                <td class="width70">{{flagsHistory.effectiveDate}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500"> Created Date
+                                                </td>
+                                                <td class="width70">{{flagsHistory.createdDate}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="width15 font500"> Archived Date
+                                                </td>
+                                                <td class="width70">{{flagsHistory.archiveDate}}</td>
+                                            </tr>
+                                        </table>
+                                        <div class="border-table"></div>
+                                    </div>
+                                    
+                                    <!-- </li>
+                                </ul> -->
+                            </div>
+                            </ng-template>
+                        </div>
+                    </p-scrollPanel>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" id="tab3" />
+                <label  for="tab3" role="tab" aria-selected="false" aria-controls="panel3" tabindex="0">Physical
+                    Properties</label>
+                <div id="tab-content3" class="tab-content" role="tabpanel" aria-labelledby="specification"
+                    aria-hidden="true">
+                    <p-scrollPanel [style]="{width: '100%', height: '450px'}">
+                        <div class="p-t-5">
+                            <p-panel header="Physical Properties" [toggleable]="true">
+                                <p-table #fundListRef [value]="physicalProperties" [rowHover]="true"
+                                    selectionMode="single">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="width35">Physical</th>
+                                            <th class="width10">Value</th>
+                                            <th class="width10">Units</th>
+                                            <th class="width10">Temp</th>
+                                            <th class="width10">Source</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-physicalPropertie>
+                                        <tr>
+                                            <td>
+                                                {{physicalPropertie.Physical_Property}}
+                                            </td>
+                                            <td> {{physicalPropertie.Value}}</td>
+                                            <td> {{physicalPropertie.Units}}</td>
+                                            <td> {{physicalPropertie.Temp}}</td>
+                                            <td> {{physicalPropertie.Source}}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </p-panel>
+                        </div>
+                    </p-scrollPanel>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" id="tab4" />
+                <label for="tab4" role="tab" aria-selected="false" aria-controls="panel4" tabindex="0">Toxicity
+                    Data</label>
+                <div id="tab-content4" class="tab-content" role="tabpanel" aria-labelledby="specification"
+                    aria-hidden="true">
+                    <p-scrollPanel [style]="{width: '100%', height: '450px'}">
+                        <div class="p-t-5">
+                            <p-panel header="Toxicity Data" [toggleable]="true">
+                                <p-table #fundListRef [value]="toxicityData" [rowHover]="true" selectionMode="single">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th class="width10">Organism</th>
+                                            <th class="width10">Test Type</th>
+                                            <th class="width10">Route</th>
+                                            <th class="width10">Effect</th>
+                                            <th class="width15">Reported Dose</th>
+                                            <th class="width30">Source</th>
+                                            <th class="width50">Link</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-toxicity>
+                                        <tr>
+                                            <td>
+                                                {{toxicity.Organism}}
+                                            </td>
+                                            <td>{{toxicity.Test_Type}}</td>
+                                            <td>{{toxicity.Route}}</td>
+                                            <td>{{toxicity.Effect}}</td>
+                                            <td>{{toxicity.Reported_Dose}}</td>
+                                            <td>{{toxicity.Source}}</td>
+                                            <td>{{toxicity.Link}}</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </p-panel>
+                        </div>
+                    </p-scrollPanel>
+                </div>
+            </li>
+            <li>
+                <input type="radio" name="tabs" id="tab5" />
+                <label for="tab5" role="tab" aria-selected="false" aria-controls="panel5" tabindex="0">See All</label>
+                <div id="tab-content5" class="tab-content" role="tabpanel" aria-labelledby="specification"
+                    aria-hidden="true">
+                    <div class="reg-single">
+                        <!-- <p-scrollPanel > -->
+                        <p-scrollPanel [style]="{width: '100%', height: '435px'}">
+                            <div #substancedetails class="reg-menu">
+                                <div class="p-t-90">
+                                    <p-panel header="Substance Details" [toggleable]="true">
+                                        <div class="m-l-10">
+                                            <h4 class="seeall-heading m-b-5">General Details</h4>
+                                            <table>
+                                                <tr>
+                                                    <td class="width15 font500">Ingredient Name</td>
+                                                    <td class="width70">{{objIngredients.ingredientName}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">CAS No. </td>
+                                                    <td class="width70">{{objIngredients.casNo}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Other CAS No. </td>
+                                                    <td class="width70">{{ingredientsRegulationobj.otherCasno}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">ELINCS or EINECS Nos</td>
+                                                    <td class="width70">{{ingredientsRegulationobj.einecsNos}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Description</td>
+                                                    <td class="width70">{{ingredientsRegulationobj.description}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">EU INCI Name </td>
+                                                    <td class="width70">
+                                                        <span
+                                                            *ngFor="let item of ingredientsRegulationobj.euInciNames;">
+                                                            {{item.euInciName}}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <h4 class="seeall-heading m-b-5 m-t-10">Chemical Details</h4>
+                                            <table>
+                                                <tr>
+                                                    <td class="width15 font500">Substance Name </td>
+                                                    <td class="width70">{{chemicalDetails.substanceName}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Substance Number </td>
+                                                    <td class="width70">{{chemicalDetails.substanceNumber}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Note </td>
+                                                    <td class="width70">{{chemicalDetails.note}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Molecular Formula</td>
+                                                    <td class="width70">{{chemicalDetails.molecularFormula}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Molecular Weight</td>
+                                                    <td class="width70">{{chemicalDetails.molecularWeight}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Structure </td>
+                                                    <td class="width70">
+                                                        {{chemicalDetails.structure}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Name of Substance </td>
+                                                    <td class="widtd70">
+                                                        {{chemicalDetails.nameofSubstance}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">MeSH Heading </td>
+                                                    <td class="width70">{{chemicalDetails.meshHeading}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Synonyms </td>
+                                                    <td class="width70">{{chemicalDetails.synonyms}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Systematic Name </td>
+                                                    <td class="width70">{{chemicalDetails.systematicName}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Superlist Names </td>
+                                                    <td class="width70">{{chemicalDetails.superlistNames}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Other Registry Numbers</td>
+                                                    <td class="width70">
+                                                        {{chemicalDetails.otherRegistryNumbers}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Smiles </td>
+                                                    <td class="width70">
+                                                        {{chemicalDetails.smiles}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Brief Profile </td>
+                                                    <td class="widtd70">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="width15 font500">Regulatory Obligations (EU)</td>
+                                                    <td class="widtd70">-</td>
+                                                </tr>
+                                            </table>
+                                            <h4 class="seeall-heading m-b-5 m-t-10">Toxicological Profile Data</h4>
+                                            <table>
+                                                <tr>
+                                                    <td width="20%">
+                                                        <h4 class="seeall-heading-2 m-b-5 m-t-10">Threshold of Toxicological Concern
+                                                            (TTC) :</h4>
+                                                    </td>
+                                                    <td width="15%"><strong>Cramer Classification Code</strong><br>
+                                                        {{ingredientsRegulationobj.cramerClassificationCode!=""?ingredientsRegulationobj.cramerClassificationCode:"-"}}
+                                                    </td>
+                                                    <td width="39%"><strong>Cramer Classification Limit </strong><br>
+                                                        {{ingredientsRegulationobj.cramerClassificationLimit!=""?ingredientsRegulationobj.cramerClassificationLimit:"-"}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20%">
+                                                        <h4 class="seeall-heading-2 m-b-5 m-t-10">Margin of Safety (MOS) :</h4>
+                                                    </td>
+                                                    <td width="15%"><strong>Oral POD NOADEL Limit</strong><br>
+                                                        {{ingredientsRegulationobj.oralPodNoaelLimit}}
+                                                       </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="20%">
+                                                        <h4 class="seeall-heading-2 m-b-5 m-t-10">Weight of Evidence Approach (WoE) :
+                                                        </h4>
+                                                    </td>
+                                                    <td width="15%"><strong>Approach</strong><br>
+                                                        {{ingredientsRegulationobj.woeApproach!=""?ingredientsRegulationobj.woeApproach:"-"}} </td>
+                                                    <td width="39%"><strong>Justification </strong><br>
+                                                        {{ingredientsRegulationobj.woeAssessmentJustification!=""?ingredientsRegulationobj.woeAssessmentJustification:"-"}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </p-panel>
+                                </div>
+                            </div>
+                            <div #flagdetails class="reg-menu">
+                                <div class="p-t-90">
+                                    <p-panel header="Flag Details" [toggleable]="true">
+                                        <div class="m-l-10">
+                                            <!-- <h4 class="seeall-heading m-b-5">General Details</h4> -->
+                                            <p-panel header="Flag Details" [toggleable]="true">
+                                                <table>
+                                                    <tr>
+                                                        <td class="width15 font500">Severity</td>
+                                                        <td class="width70">{{flagsDetails.severity}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="width15 font500">Title</td>
+                                                        <td class="width70">{{flagsDetails.title}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="width15 font500">Description</td>
+                                                        <td class="width70">
+                                                            {{flagsDetails.description}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="width15 font500">Reference link
+                                                        </td>
+                                                        <td class="width70">
+                                                            {{flagsDetails.referenceLink}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="width15 font500">Regulatory Change Type
+                                                        </td>
+                                                        <td class="width70">{{flagsDetails.regulatoryChangeType}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="width15 font500">Effective Date
+                                                        </td>
+                                                        <td class="width70">{{flagsDetails.createdDate}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="width15 font500"> Last Modified Date
+                                                        </td>
+                                                        <td class="width70">{{flagsDetails.modifiedDate}}</td>
+                                                    </tr>
+                                                </table>
+                                            </p-panel>
+                                            <div class="row ml-0 align-items-end m-b-10 m-t-10">
+                                                <div class="col-md-8 p-l-0 justify-content-start ">
+                                                    <h4 class="seeall-heading m-b-5 m-t-10">Flags History</h4>
+                                                </div>
+                                                <div class="col-md-4 justify-content-end  p-r-0 text-right">
+                                                    <button
+                                                        [ngClass]="isShowFlagsHistory?'default-btn':'default-btn active'"
+                                                        (click)="ShowFlagsHistory('true')">Detail View</button>
+                                                    <button
+                                                        [ngClass]="isShowFlagsHistory?'default-btn active':'default-btn'"
+                                                        (click)="ShowFlagsHistory('false')">Grid View</button>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="isShowFlagsHistory;then flagshistorygrid else flagshistorydetails"></div>
+                                            <ng-template #flagshistorygrid>
+                                                <p-table #fundListRef [value]="flagsHistory" [rowHover]="true" selectionMode="single">
+                                                    <ng-template pTemplate="header">
+                                                        <tr>
+                                                            <th width="5%">Flag</th>
+                                                            <th width="10%">Title</th>
+                                                            <th width="30%">Description</th>
+                                                            <th width="15%">Reference link</th>
+                                                            <th width="10%">Regulatory Change Type</th>
+                                                            <th width="10%">Effective Date</th>
+                                                            <th width="10%">Created Date</th>
+                                                            <th width="10%">Archived Date</th>
+                                                        </tr>
+                                                    </ng-template>
+                                                    <ng-template pTemplate="body" let-flagsHistory>
+                                                        <tr class="m-b-10">
+                                                            <td>
+                                                                <i *ngIf="flagsHistory.severity=='High'"
+                                                                    class="pi pi-flag-fill flagred"></i>
+                                                                <i *ngIf="flagsHistory.severity=='Low'"
+                                                                    class="pi pi-flag-fill flagblue"></i>
+                                                                <i *ngIf="flagsHistory.severity==''"
+                                                                    class="pi pi-flag-fill flaggrey"></i>
+                                                            </td>
+                                                            <td> {{flagsHistory.title}}</td>
+                                                            <td> {{flagsHistory.description}}</td>
+                                                            <td> {{flagsHistory.referenceLink}}</td>
+                                                            <td> {{flagsHistory.regulatoryChangeType}}</td>
+                                                            <td> {{flagsHistory.effectiveDate}}</td>
+                                                            <td> {{flagsHistory.createdDate}}</td>
+                                                            <td> {{flagsHistory.archiveDate}}</td>
+                                                        </tr>
+                                                    </ng-template>
+                                                </p-table>    
+                                            </ng-template>
+                                            <ng-template #flagshistorydetails>
+                                                <div class="col-md-12 p-0">
+                                                <!-- <ul>
+                                                    <li *ngFor="let flagsHistory of flagsHistory; let i=index; "> -->
+                                                   <div *ngFor="let flagsHistory of flagsHistory; let i=index; ">
+                                                        <table>
+                                                            <tr>
+                                                                <td class="width15 font500">Flag</td>
+                                                                <td class="width70"> <i *ngIf="flagsHistory.severity=='High'"
+                                                                        class="pi pi-flag-fill flagred"></i>
+                                                                    <i *ngIf="flagsHistory.severity=='Low'"
+                                                                        class="pi pi-flag-fill flagblue"></i>
+                                                                    <i *ngIf="flagsHistory.severity==''"
+                                                                        class="pi pi-flag-fill flaggrey"></i>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="width15 font500">Title</td>
+                                                                <td class="width70">{{flagsHistory.title}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="width15 font500">Description</td>
+                                                                <td class="width70">
+                                                                    {{flagsHistory.description}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="width15 font500">Reference link
+                                                                </td>
+                                                                <td class="width70">
+                                                                    {{flagsHistory.referenceLink}}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="width15 font500">Regulatory Change Type
+                                                                </td>
+                                                                <td class="width70">{{flagsHistory.regulatoryChangeType}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="width15 font500">Effective Date
+                                                                </td>
+                                                                <td class="width70">{{flagsHistory.effectiveDate}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="width15 font500"> Created Date
+                                                                </td>
+                                                                <td class="width70">{{flagsHistory.createdDate}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="width15 font500"> Archived Date
+                                                                </td>
+                                                                <td class="width70">{{flagsHistory.archiveDate}}</td>
+                                                            </tr>
+                                                        </table>
+                                                        <div class="border-table"></div>
+                                                    </div>
+                                                    
+                                                    <!-- </li>
+                                                </ul> -->
+                                            </div>
+                                            </ng-template>
+                                        </div>
+                                    </p-panel>
+                                </div>
+                            </div>
+                            <div #physicalproperties class="reg-menu">
+                                <div class="p-t-90 m-t-10">
+                                    <p-panel header="Physical Properties" [toggleable]="true">
+                                        <div class="m-l-10">
+                                            <p-table #fundListRef [value]="physicalProperties" [rowHover]="true"
+                                                selectionMode="single">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                        <th class="width35">Physical</th>
+                                                        <th class="width10">Value</th>
+                                                        <th class="width10">Units</th>
+                                                        <th class="width10">Temp</th>
+                                                        <th class="width10">Source</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-physicalPropertie>
+                                                    <tr>
+                                                        <td>
+                                                            {{physicalPropertie.Physical_Property}}
+                                                        </td>
+                                                        <td> {{physicalPropertie.Value}}</td>
+                                                        <td> {{physicalPropertie.Units}}</td>
+                                                        <td> {{physicalPropertie.Temp}}</td>
+                                                        <td> {{physicalPropertie.Source}}</td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </p-panel>
+                                </div>
+                            </div>
+                            <div #toxicitydata class="reg-menu">
+                                <div class="p-t-90">
+                                    <p-panel header="Toxicity Data" [toggleable]="true">
+                                        <div class="m-l-10">
+                                            <p-table #fundListRef [value]="toxicityData" [rowHover]="true"
+                                                selectionMode="single">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                        <th class="width10">Organism</th>
+                                                        <th class="width10">Test Type</th>
+                                                        <th class="width10">Route</th>
+                                                        <th class="width10">Effect</th>
+                                                        <th class="width15">Reported Dose</th>
+                                                        <th class="width30">Source</th>
+                                                        <th class="width50">Link</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-toxicity>
+                                                    <tr>
+                                                        <td>
+                                                            {{toxicity.Organism}}
+                                                        </td>
+                                                        <td>{{toxicity.Test_Type}}</td>
+                                                        <td>{{toxicity.Route}}</td>
+                                                        <td>{{toxicity.Effect}}</td>
+                                                        <td>{{toxicity.Reported_Dose}}</td>
+                                                        <td>{{toxicity.Source}}</td>
+                                                        <td>{{toxicity.Link}}</td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </p-panel>
+                                </div>
+                            </div>
+                        </p-scrollPanel>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

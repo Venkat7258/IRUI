@@ -1,0 +1,96 @@
+<div class="col-md-12 p-1">
+    <p-card [style]="{width: '100%', height: '542px'}">
+        <div class="row ml-0 ">
+            <div class="col-md-4">
+                <label>Master Data Type</label>
+                <!-- [filter]="true" filterBy="name" 
+                [showClear]="false" -->
+                <p-dropdown [options]="masterDataTypes" (onChange)="onMasterDataType($event)"
+                    [(ngModel)]="selectedMasterDataType" optionLabel="name"
+                    placeholder="Select Master Data Type">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="flex align-items-center gap-2" *ngIf="selectedMasterDataType">
+                            <div>{{ selectedMasterDataType.name }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-ingredientMasterData pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ ingredientMasterData.name }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="col-md-4">
+                <label>Master Data</label>
+                <p-dropdown [options]="masterData" [(ngModel)]="selectedMasterData" optionLabel="name" (onChange)="onMasterData($event)" 
+                    placeholder="Select Master Data">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="flex align-items-center gap-2" *ngIf="selectedMasterData">
+                            <div>{{ selectedMasterData.name }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-country pTemplate="item">
+                        <div class="flex align-items-center gap-2">
+                            <div>{{ country.name }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+
+            </div>
+        </div>
+        <div class="row ml-0 justify-content-center">
+            <div class="col-md-12 m-t-20">
+                <ng-template [ngIf]="isCountries">
+                    <div>
+                       <app-countries></app-countries>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isRegions">
+                    <div>
+                        <app-regions></app-regions>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isRegulationsStatusCosing">
+                    <div>
+                        <app-regulationstatuscosing></app-regulationstatuscosing>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isRuletypecategories">
+                    <div>
+                        <app-ruletype-categories></app-ruletype-categories>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isRuletypes">
+                    <div>
+                        <app-ruletypes></app-ruletypes>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isSubscriptionPriceDetails">
+                    <div>
+                        <app-subscription-price-details></app-subscription-price-details>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isConditionTypes">
+                    <div>
+                        <app-conditiontypes></app-conditiontypes>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isAddImportTypesCosmetics">
+                    <div>
+                        <app-importtypecosmetics></app-importtypecosmetics>
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isAddSubstanceDataSources">
+                    <div>
+                       <app-substancedatasources></app-substancedatasources> 
+                    </div>
+                </ng-template>
+                <ng-template [ngIf]="isAddRegulationStatusChem">
+                    <div>
+                        <app-regulationstatuschem></app-regulationstatuschem>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </p-card>
+</div>

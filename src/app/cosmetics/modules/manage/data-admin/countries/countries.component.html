@@ -1,0 +1,76 @@
+<!-- Countries -->
+<div *ngIf="isAddCountry === true;then addandUpdateCountry else viewCountry"></div>
+<ng-template #addandUpdateCountry>
+
+    <div class="col-md-12 p-1">
+        <p-card>
+            <div class="row ml-0">
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Country Name</label>
+                        <input type="text" [(ngModel)]="objCountry.countryName" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Country Code</label>
+                        <input type="text" [(ngModel)]="objCountry.countryCode" pInputText />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="field">
+                        <label for="username1" class="block">Region</label>
+                        <p-dropdown class="p-dropdown-ng" [options]="regions" optionLabel="regionName"
+                            optionValue="regionName" placeholder="Select a Region" [(ngModel)]="objCountry.region"
+                            dataKey [showClear]="true"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <button type="button"  class="b-width-85 m-r-10 fc-btn"
+                        (click)="SaveAndUpdateCountry(isaction==true?'Add':'Edit')">{{isaction==true?'Add':'Update'}}</button>
+                    <button type="button"  class="b-width-85 m-r-10 fc-btn" (click)="onCountryClose()"> Close</button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+</ng-template>
+<ng-template #viewCountry>
+    <p-card>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <p-checkbox value="" label="Show Disabled Countries" (onChange)="ShowActiveCountry($event)" ></p-checkbox> -->
+            </div>
+            <div class="col-md-6 m-b-10 text-right">
+                <!-- <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Add Country" 
+                  (click)="AddAndUpdateCountry('Add')"  class="p-button-outlined"></button> -->
+                <p-button label="Add Country" icon="pi pi-plus" iconPos="left" (onClick)="AddAndUpdateCountry('Add')"
+                    class="m-r-10"></p-button>
+            </div>
+        </div>
+        <p-table [value]="countries">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>CountryName</th>
+                    <th>CountryCode</th>
+                    <th>Region</th>
+                    <th>IsMutiCountry</th>
+                    <th>AlternateCountry</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-countries>
+                <tr>
+                    <td>{{countries.countryName}}</td>
+                    <td>{{countries.countryCode}}</td>
+                    <td>{{countries.region}}</td>
+                    <td>{{countries.isMutiCountry}}</td>
+                    <td>{{countries.alternateCountry}}</td>
+                    <td><p-splitButton label="Actions" [model]="countryItems"
+                            (onDropdownClick)="HandleActionsClickCountry(countries,'country')"
+                            styleClass="p-button-raised mr-2 mb-2"></p-splitButton></td>
+            </ng-template>
+        </p-table>
+    </p-card>
+</ng-template>

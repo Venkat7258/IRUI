@@ -1,0 +1,20 @@
+.p-dropdown {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100% !important;
+}
+// P-dropdown Label
+.p-dropdown-label {
+    line-height: 0px !important;
+    font-size: $font-size-12 !important;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    font-size: $font-size-12 !important;
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover { 
+    background: $body-background !important;
+}

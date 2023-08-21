@@ -1,0 +1,70 @@
+<div class="col-md-12 p-1">
+    <p-card [style]="{width: '100%', height: '542px'}">
+        <div class="row ml-0">
+            <div class="col-md-12 p-0">
+                <p-table [value]="ingredients">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th width="4%">Flag</th>
+                            <th width="15%">Ingredient Name</th>
+                            <th width="10%">CAS No</th>
+                            <th width="10%">Functions</th>
+                            <th width="10%">Cosmetics Inventory</th>
+                            <th width="10%">Chemical Inventory</th>
+                            <th width="10%">EU INCI Name</th>
+                            <th width="10%">US INCI Name</th>
+                            <th width="10%">Other Names</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-ingredient>
+                        <tr>
+                            <td width="4%">
+                                <i class="pi pi-flag-fill flagred"></i>
+                                <!-- <i *ngIf="ingredient.ingFlags.severity=='High'" class="pi pi-flag-fill flagred"></i>
+                            <i *ngIf="ingredient.ingFlags.severity=='Low'" class="pi pi-flag-fill flagblue"></i>
+                            <i *ngIf="ingredient.ingFlags.severity==''" class="pi pi-flag-fill flaggrey"></i> -->
+                            </td>
+                            <td width="15%">
+                                <a href="javascript:void(0)"
+                                    (click)="getIngredientName(ingredient)">{{ingredient.ingredientName}}</a>
+                            </td>
+                            <td width="10%">{{ingredient.casNo}}</td>
+                            <td width="10%">{{ingredient.functions| ellipsis: 40}}
+                                <span class="blue" *ngIf="(ingredient.functions.length>40)"
+                                    (click)="ShowMore({model:ingredient.functions,type:'function'})"><i
+                                        class="pi pi-plus-circle icons-color"></i> </span>
+                            </td>
+                            <td width="10%">{{ingredient.cosmeticsInventory| ellipsis: 40}}
+                                <span class="blue" *ngIf="(ingredient.cosmeticsInventory.length>40)"
+                                    (click)="ShowMore({model:ingredient.cosmeticsInventory,type:'cosmeticsInventory'})"><i
+                                        class="pi pi-plus-circle icons-color"></i>
+                                </span>
+                            </td>
+                            <td width="10%">{{ingredient.chemicalInventory| ellipsis: 40}}
+                                <span class="blue" *ngIf="(ingredient.chemicalInventory.length>40)"
+                                    (click)="ShowMore({model:ingredient.chemicalInventory,type:'chemicalInventory'})"><i
+                                        class="pi pi-plus-circle icons-color"></i>
+                                </span>
+                            </td>
+                            <td width="10%">{{ingredient.euInciNames| ellipsis: 40}}
+                                <span class="blue" *ngIf="(ingredient.euInciNames.length>40)"
+                                    (click)="ShowMore({model:ingredient.euInciNames,type:'euInciNames'})"><i
+                                        class="pi pi-plus-circle icons-color"></i> </span>
+                            </td>
+                            <td width="10%">{{ingredient.usInciNames| ellipsis: 40}}
+                                <span class="blue" *ngIf="(ingredient.usInciNames.length>40)"
+                                    (click)="ShowMore({model:ingredient.usInciNames,type:'usInciNames'})"><i
+                                        class="pi pi-plus-circle icons-color"></i> </span>
+                            </td>
+                            <td width="15%">{{ingredient.otherNames | ellipsis: 40}}
+                                <span class="blue" *ngIf="(ingredient.otherNames.length>40)"
+                                    (click)="ShowMore({model:ingredient.otherNames,type:'otherNames'})"><i
+                                        class="pi pi-plus-circle icons-color"></i> </span>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-card>
+</div>

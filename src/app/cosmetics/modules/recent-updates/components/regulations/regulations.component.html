@@ -1,0 +1,83 @@
+<div class="col-md-12 p-1 ">
+    <div class="row ml-0">
+        <div class="col-md-6 p-l-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-custom">
+                    <li class="breadcrumb-item">
+                        <a [routerLink]="['/cosmetics/recentupdates']">Recent Updates</a>
+                    </li>
+                    <li   aria-current="page" class="breadcrumb-item">
+                        <a [routerLink]="['/cosmetics/recentupdates/regulations']" (click)="ActiveTabClick($event)"> {{activeTab}}</a>
+                        <!-- <container_element [ngSwitch]="mode">
+                            <a *ngSwitchCase="'edit'">
+                                {{this.isEdit ? 'Edit Formula': 'Add Formula'}}
+                            </a>
+                            <a *ngSwitchCase="'clone'">Clone Formula</a>
+                            <a *ngSwitchCase="'view'">View Formula</a>
+                        </container_element> -->
+                    </li>
+                    <li [hidden]="activeTab=='Regulation Details'" aria-current="page" class="breadcrumb-item breadcrumb-item-head active">
+                        <a>{{activeSubTab}}</a>
+                        <!-- {{stepsActiveIndex===0 ? 'Formula Details': 'Ingredient Details'}} -->
+                    </li>
+                </ol> 
+            </nav>
+        </div>
+        <div class="col-md-6 p-r-0 justify-content-end ">
+            <ol class="breadcrumb breadcrumb-custom float-right">
+                <li class="m-r-10 list-back ">
+                    <a [routerLink]="['/cosmetics/recentupdates']">
+                        <i class="pi pi-arrow-circle-left"></i> Back </a>
+                </li>
+            </ol>
+
+        </div>
+        
+    </div>
+    <p-card [style]="{'width': '100%'}">
+        <div class="row ml-0">
+            <div class="col-md-10 p-l-0">
+                <div class="ing-down">
+                    <div class="ing-text font500">Ingredient Name :</div>
+                    <div class="ing-text">{{ingredientName}}</div>
+                </div>
+                
+                <div class="ing-down">
+                    <div class="ing-text font500">CAS No :</div>
+                    <div class="ing-text">{{casno}}</div>
+                </div>
+
+                <div class="ing-down">
+                    <div class="ing-text font500">Market/Country :</div>
+                    <div class="ing-text">{{countryName}}</div>
+                </div>
+            </div>
+        </div>
+        </p-card>
+    <p-card [style]="{'width': '100%', height:'553px'}">
+        <div   class="col-md-12 p-0">
+            
+            <p-tabView [activeIndex]="index" (onChange)="AssignActiveTab($event)"  >
+               
+                <p-tabPanel  header="Ingredient Details">
+                    
+                        <ng-template pTemplate="content">
+                            
+                            <ing-details (ActiveSubTab)="displaySubTab($event)"  [ingredients]="objIngredients"></ing-details>
+                            
+                        </ng-template>
+                    
+                </p-tabPanel>
+            
+                <p-tabPanel   header="Regulation Details">
+                    <ng-template pTemplate="content">
+                       
+                        <country-details [countryName]="countryName"
+                            [ingredients]="countryRegulations"></country-details>
+                    </ng-template>
+                </p-tabPanel>
+
+            </p-tabView>
+        </div>
+    </p-card>
+</div>

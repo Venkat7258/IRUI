@@ -1,0 +1,97 @@
+<div class="col-md-12 p-1">
+  <p-card>
+    <div class="col-md-12 p-0">
+      <p-tabView>
+        <p-tabPanel header="Ingredient Details ">
+          <ng-template pTemplate="content">
+            <ing-details [ingredients]="objIngredients"></ing-details>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel header="Regulation Details">
+          <ng-template pTemplate="content">
+            <div class="row">
+              <div class="col-md-2 ">
+                <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000"
+                  styleClass="p-sidebar-left1">
+                  <!-- <ng-template [hidden]="isRecentUpdates" pTemplate="header"> -->
+                  Select Market/Country
+                  <!-- </ng-template> -->
+                  <div class="col-md-12 p-0">
+
+
+                    <p-dropdown [options]="countriesDropDown" [(ngModel)]="selectedCountry" [filter]="true"
+                      filterBy="text" (onChange)="getReglationData()" optionLabel="text" optionValue="value"
+                      placeholder="Select Search Type"></p-dropdown>
+                    <p-table #fmIngListRef [value]="formulaIngredients" [scrollable]="true" styleClass="p-datatable-sm"
+                      selectionMode="single" [(selection)]="selectedIngredient"
+                      (onRowSelect)="onIngredientRowSelect($event)">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th [width]="20">Ingredient Name</th>
+                          <th [width]="20">Given Name</th>
+                          <th [width]="20">CAS No</th>
+                          <th [width]="20">Cosmetics Regulatory Status</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-formulaSpec let-rowIndex="rowIndex">
+                        <tr [pSelectableRow]="formulaSpec">
+                          <td> {{formulaSpec.ingredientName}} </td>
+                          <td> {{formulaSpec.givenName}} </td>
+                          <td> {{formulaSpec.casNo}} </td>
+                          <td>{{formulaSpec.cosmeticsRegulatoryStatus}}</td>
+                        </tr>
+                      </ng-template>
+                    </p-table>
+
+                    <!-- <p-table #fundListRef [value]="countries" [rowHover]="true" selectionMode="single"
+                      [(selection)]="countryRegulations" [metaKeySelection]="false" dataKey="country"
+                      (onRowSelect)="onCountryRowSelect($event)">
+                      <ng-template pTemplate="header">
+                        <tr>
+                          <th>Market/Country</th>
+                          <th>Regulatory Status</th>
+                          <th>Region</th>
+                        </tr>
+                      </ng-template>
+                      <ng-template pTemplate="body" let-country>
+                        <tr [pSelectableRow]="country">
+                          <td>
+                            {{country.country}}
+                          </td>
+                          <td>{{country.regulatoryStatus}}</td>
+                          <td>{{country.region}}</td>
+                        </tr>
+                      </ng-template>
+                    </p-table> -->
+                  </div>
+                </p-sidebar>
+                <div class="m-t-5 m-b-5">
+                  <p-button type="button" class="mr-2 " (click)="visibleSidebar2 = true" icon="pi pi-globe"
+                    label="Select Market/Country" class="p-button-sm"></p-button>
+                </div>
+              </div>
+              <div class="col-md-10 p-l-0">
+                <div class="ing-down">
+                  <div class="ing-text font500">Ingredient Name :</div>
+                  <div class="ing-text">{{objIngredients.ingredientName}}</div>
+                </div>
+                <div class="ing-down">
+                  <div class="ing-text font500">Market/Country :</div>
+                  <div class="ing-text">{{countryRegulations.country}}</div>
+                </div>
+              </div>
+            </div>
+            <country-details [ingredients]="countryRegulations" [countryName]="selectedCountry"></country-details>
+          </ng-template>
+        </p-tabPanel>
+        <!-- <p-tabPanel header="Map View">
+          <ng-template pTemplate="content">
+            <div class="col-md-12">
+              <app-map [ingredients]="objIngredients"></app-map>
+            </div>
+          </ng-template>
+        </p-tabPanel> -->
+      </p-tabView>
+    </div>
+  </p-card>
+</div>

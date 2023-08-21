@@ -1,0 +1,94 @@
+
+
+<div class="col-md-12 p-1 ">
+    <p-card [style]="{'width': '100%'}">
+        <div class="col-md-12 p-0">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+                <div class="row">
+                    <div class="col-md-3">
+                            <label for="username1" class="block">Ingredient Name / CAS No.</label>
+                            <input type="text" pInputText name="firstName" ngModel #firstName="ngModel"
+                                 [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }"
+                                required placeholder="Enter Ingredient Name / CAS No.">                     
+                    </div>
+                    <div class="col-md-3">
+                            <label for="username1" class="block">Market/Country</label>
+                            <p-dropdown class="p-dropdown-ng" [options]="cities" optionLabel="name"
+                                placeholder="Select Market/Country" [showClear]="true" name="city" ngModel #city="ngModel"
+                                 [ngClass]="{ 'is-invalid': f.submitted && city.invalid }"[required]="true"
+                                ></p-dropdown>      
+                    </div>
+                    <div class="col-md-2">
+                            <label for="icon">From Date</label>
+                            <p-calendar  [showIcon]="true" inputId="icon" name="date" ngModel
+                                #date="ngModel" placeholder="01/31/2023"
+                                [ngClass]="{ 'is-invalid': f.submitted && date.invalid }"  [required]="true"></p-calendar>
+                                <div *ngIf="f.submitted && date.errors" class="invalid-feedback">
+                                    <div *ngIf="date.errors.required">date is required</div>
+                                </div>
+                    </div>
+                    <div class="col-md-2">
+                            <label for="icon">To Date</label>
+                            <p-calendar  [showIcon]="true" inputId="icon" name="date" ngModel
+                                #date="ngModel" placeholder="03/31/2023"
+                                [ngClass]="{ 'is-invalid': f.submitted && date.invalid }"  [required]="true"></p-calendar>
+                                <div *ngIf="f.submitted && date.errors" class="invalid-feedback">
+                                    <div *ngIf="date.errors.required">date is required</div>
+                                </div>
+                    </div>
+                    <div class="col-md-2 m-t-22">
+                        
+                        <p-button label="Search" icon="pi pi-search"></p-button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </p-card>
+</div>
+
+
+<p-card>
+    <div class="row">
+        <div class="col-md-12">
+            <p-table [value]="ingredients">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th width="10%" >Ingredient Name</th>
+                        <!-- <th>Other Names</th> -->
+                        <th width="8%">CAS No</th>
+                        <th width="8%">Country</th>
+                        <th width="8%">Cosmetics Regulatory Status </th>
+                        <th width="8%">Chemical Regulatory Status	</th>
+                        <th width="8%">Cosmetics Modified Date</th>	
+                        <th width="8%">Chemical Modified Date	</th>
+                        <th width="10%">Cosmetics Regulatory Change Type</th>	
+                        <th width="10%">Chemical Regulatory Change Type</th>	
+                        <th width="8%">Cosmetics Effective Date</th>
+                        <th width="8%">Chemical Effective Date</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-ingredient>
+                    <tr *ngFor="let recentUpdate of ingredient.recentUpdates">
+                        <td  >
+                            <a href="javascript:void(0)" (click)="getIngredientName(ingredient,recentUpdate.Country,ingredient.casNo,ingredient.ingredientName)"
+                                >{{ingredient.ingredientName}}</a>
+                        </td>
+                        <!-- <td>gheferhjfhg</td> -->
+                        <td >{{ingredient.casNo}}</td>
+                        <td >{{recentUpdate.Country}}</td>
+                        <td >{{recentUpdate.RegulatoryStatus}}</td>
+                        <td>{{recentUpdate.ChemRegulatoryStatus}}</td>
+                        <td >{{recentUpdate.ModifiedDate | date:'dd-MMM-yyyy'}}</td>
+                        <td>{{recentUpdate.ChemModifiedDate| date:'dd-MMM-yyyy'}}</td>
+                        <td>{{recentUpdate.RegulatoryChangeTypeCountry}}</td>
+                        <td>{{recentUpdate.ChemicalRegulatoryChangeType}}</td>
+                        <td >{{recentUpdate.EffectiveDateCountry| date:'dd-MMM-yyyy'}}</td>
+                        <td>{{recentUpdate.ChemEffectiveDate| date:'dd-MMM-yyyy'}}</td>
+                        
+                      
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</p-card>

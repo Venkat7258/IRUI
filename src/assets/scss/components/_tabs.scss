@@ -1,0 +1,93 @@
+//IR Page--Ingredient Details-- inside Tabs Start
+.tabs {
+  width: 100%;
+  float: none;
+  list-style: none;
+  position: relative;
+  margin: 10px 0 0 0px;
+  text-align: left;
+}
+.tabs li {
+  float: left;
+  display: block;
+}
+.tabs input[type="radio"] {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+}
+.tabs label {
+  display: block;
+  padding: 2px 12px;
+  border-radius: 2px 2px 0 0;
+  font-size: 14px;
+  text-transform: initial;
+  background: $bg-shade1;
+  color: $primary-color;
+  cursor: pointer;
+  position: relative;
+  top: -5px;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border-right: 1px solid $primary-color;
+}
+.tabs label:hover {
+border-bottom: 2px solid $primary-color;
+}
+.tabs .tab-content {
+  z-index: 2;
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  font-size: 17px;
+  line-height: 25px;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background: #ffffff;
+}
+.tabs [id^="tab"]:checked + label {
+  top: -5px;
+  padding-top: 3px;
+  background: $primary-hover;
+  color:$white;
+}
+.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+  display: block;
+}
+
+p.link {
+  clear: both;
+  margin: 380px 0 0 15px;
+}
+p.link a {
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  padding: 5px 10px;
+  margin: 0 5px;
+  background-color: #612e76;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+p.link a:hover {
+  background-color: #522764;
+}
+ 
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  border: solid #dee2e6;
+  border-width: 0 0 2px 0;
+  border-color: transparent transparent #dee2e6 transparent;
+  background: #ffffff;
+  color: $font-color !important;
+
+}
+.ir-bg{
+  background: $bg-shade1;
+}
+//IR Page--Ingredient Details-- inside Tabs END

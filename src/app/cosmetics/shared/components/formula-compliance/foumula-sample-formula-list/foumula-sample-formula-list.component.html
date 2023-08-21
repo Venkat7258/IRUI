@@ -1,0 +1,86 @@
+<div class="col-md-12 p-1">
+    <p-card [style]="{'width': '100%', height:'553px'}">
+
+        <div class="col-md-12 p-0">
+            <form [formGroup]="formulaSearchFilterForm" autocomplete="off">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input pInputText type="text" placeholder="Search by Formula Name/No."
+                            formControlName="formulaName" (keyup)="filterFormula()">
+                    </div>
+                    <div class="col-md-3">
+                        <input pInputText type="text" placeholder="Search by Formula Description"
+                            formControlName="formulaDescription" (keyup)="filterFormula()">
+                    </div>
+                    <div class="col-md-3">
+                        <input pInputText type="text" placeholder="Search by Ingredient Name"
+                            formControlName="ingredientName" (keyup)="filterFormula()">
+                    </div>
+                    <div class="col-md-3 text-right fc-total-formulas-align">
+                        <span class="fc-total-formulas">Total Formulas : {{ totalRecords}}
+                        </span>
+                        <span>
+                            <button pButton type="button" label="Add Formula" styleClass="p-button-sm"
+                                icon="pi pi-plus-circle" (click)="viewFormula('','add')"></button>
+                        </span>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-md-12 m-t-10">
+            <p-contextMenu #cm [model]="contextMenu" appendTo="body"></p-contextMenu>
+        </div>
+        <div class="col-md-12 p-0">
+            <p-table [value]="dataSource" [lazy]="false" (onLazyLoad)="loadListData($event)" [paginator]="true"
+                [rows]="10" [totalRecords]="totalRecords" [loading]="loading" [scrollable]="true" [customSort]="true"
+                styleClass="p-datatable-sm" [rowHover]="true" [contextMenu]="cm"
+                [(contextMenuSelection)]="selectedContextTD" [filterDelay]="0" (onFilter)="onFormulaFilter($event)">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th pSortableColumn="FormulaNo" style="width:20%">Formula Name/No.
+                            <!-- <p-sortIcon field="Formula Name/No."></p-sortIcon>
+                          <p-columnFilter type="text" field="formulaNo" display="menu" class="ml-auto"
+                              [matchModeOptions]="matchModeOptions">
+                          </p-columnFilter> -->
+                        </th>
+                        <th pSortableColumn="Description" style="width:20%">
+                            Formula Description
+                            <!-- <p-sortIcon field="Formula Description"></p-sortIcon>
+                          <p-columnFilter type="text" field="description" display="menu" class="ml-auto">
+                          </p-columnFilter> -->
+                        </th>
+                        <th pSortableColumn="modifiedDate" style="width:20%">Modified Date
+                            <!-- <p-sortIcon field="Modified Date"></p-sortIcon> -->
+                        </th>
+                        <th>Actions</th>
+                        <th>Assessment</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-formula>
+                    <tr>
+                        <td>{{formula.formulaNo}}</td>
+                        <td>{{formula.description}}</td>
+                        <td>{{formula.modifiedDate | date: 'dd-MMM-yyyy'}}</td>
+                        <td [pContextMenuRow]="formula">
+                            <!-- (keyup.enter)="openCm($event, cm,formula.id)" -->
+                            <span class="btn-action" tabindex="0" (contextmenu)="openCm($event, cm,formula.id)"
+                                (click)="openCm($event, cm,formula.id)">
+                                Actions <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </span>
+
+                            <!-- <div data-toggle="tooltip" class="btn btn-link weight-500 width100per text-center "
+                                      data-placement="left" title="View" data-original-title="View"
+                                      (click)="viewFormula(formula.id)">
+                                      <i class="fa fa-eye"></i>
+                                  </div> -->
+                        </td>
+                        <td> <i (click)="navigageToCompliance(formula.id)">Compliance</i> | Map View | Formula Assessment</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+    </p-card>
+</div>

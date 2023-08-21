@@ -1,0 +1,9 @@
+.heading-shadow {
+    font-weight: 600 !important;
+    background-image: $gradient-heading;
+    padding: 4px;
+    font-size: $font-size-14;
+    border-left : 2px solid $primary-color;
+    display:inline-block;
+    box-shadow: 1px 12px 7px -8px #ccc;
+  }

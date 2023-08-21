@@ -1,0 +1,282 @@
+@media (max-width: 575.98px) {
+  .login_container {
+    margin: 0 !important;
+  }
+  .login_container .panel .left_panel {
+    background: #5b229f;
+    height: calc(100vh - 0px) !important;
+  }
+  .login_container .panel .login_section .right_panel {
+    padding: 30px 100px !important;
+    height: calc(100vh - 150px) !important;
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .login_container {
+    margin: 0 !important;
+  }
+  .login_container .panel .left_panel {
+    background: #5b229f;
+    height: calc(100vh - 0px) !important;
+  }
+  .login_container .panel .login_section .right_panel {
+    padding: 30px 100px !important;
+    height: calc(100vh - 150px) !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .login_container {
+    margin: 0 !important;
+  }
+  .login_container .panel .left_panel {
+    background: #5b229f;
+    height: calc(100vh - 0px) !important;
+  }
+  .login_container .panel .login_section .right_panel {
+    padding: 100px 50px !important;
+    height: calc(100vh - 0px) !important;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .login_container {
+    margin: 0 !important;
+  }
+  .login_container .panel .left_panel {
+    background: #5b229f;
+    height: calc(100vh - 0px) !important;
+  }
+  .login_container .panel .login_section .right_panel {
+    padding: 100px 100px !important;
+    height: calc(100vh - 0px) !important;
+  }
+}
+
+
+.login-body {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  margin-top: -234px;
+  margin-left: -396px;
+}
+.login-body .login-wrapper {
+  width: 792px;
+  height: 468px;
+  border-radius: 0.625rem;
+  position: relative;
+  z-index: 1000;
+}
+.login-body .login-wrapper .panel .login-content {
+  background: $login-background;
+  float: left;
+  height: 489px;
+  padding: 2rem;
+  border-radius: 10px 0 0 10px;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+.login-body .login-wrapper .panel .login-content .logo {
+  text-align: center;
+  padding: 1.563rem 0rem;
+}
+.login-body .login-wrapper .panel .login-content .logo h4 {
+  color: $white;
+  margin: 0px;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section {
+  width: 250px;
+  height: 242px;
+  position: relative;
+  margin: 25px auto;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon {
+  background-color: $login-icon-background;
+  border-radius: 10px;
+  width: 56px;
+  height: 41px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon::before, .login-body .login-wrapper .panel .login-content .hexagon_section .hexagon::after {
+  content: "";
+  border: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: $login-icon-background;
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon::before {
+  -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon::after {
+  -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon .hexagon-bg {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 1;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon .hexagon-bg .hexagon-img {
+  margin: 0 auto;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon_pos_1 {
+  left: 114%;
+  margin-left: -31px;
+  top: -56px;
+  margin-top: 0px;
+  position: absolute;
+  bottom: 0;
+  -webkit-animation-name: zoomInDown;
+  animation-name: zoomInDown;
+  -webkit-animation-duration: 2.5s;
+  animation-duration: 2.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon_pos_2 {
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 30%;
+  bottom: 0;
+  margin-left: -40px;
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon_pos_3 {
+  position: absolute;
+  left: 102%;
+  top: 83%;
+  margin-top: 0;
+  -webkit-animation-name: zoomInLeft;
+  animation-name: zoomInLeft;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon_pos_4 {
+  position: absolute;
+  left: 102%;
+  bottom: -26%;
+  -webkit-animation-name: zoomInLeft;
+  animation-name: zoomInLeft;
+  -webkit-animation-duration: 3.5s;
+  animation-duration: 3.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon_pos_5 {
+  position: absolute;
+  left: 113%;
+  margin-left: -28px;
+  right: 0;
+  bottom: 27%;
+  -webkit-animation-name: zoomInUp;
+  animation-name: zoomInUp;
+  -webkit-animation-duration: 4s;
+  animation-duration: 4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon_pos_6 {
+  position: absolute;
+  right: -24%;
+    bottom: 53%;
+  -webkit-animation-name: zoomInRight;
+  animation-name: zoomInRight;
+  -webkit-animation-duration: 4.5s;
+  animation-duration: 4.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.login-body .login-wrapper .panel .login-content .hexagon_section .hexagon_pos_7 {
+  position: absolute;
+  top: 20%;
+  right: -24%;
+  margin-top: -40px;
+  -webkit-animation-name: zoomInRight;
+  animation-name: zoomInRight;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.login-body .login-wrapper .panel .login-form {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  float: left;
+  height: 489px;
+  border-radius: 0px;
+  text-align: left;
+  padding: 3.4rem 4rem;
+  -webkit-box-shadow: 0 0.5rem 4rem rgb(173 181 189 / 54%);
+          box-shadow: 0 0.5rem 4rem rgb(173 181 189 / 54%);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.login-body .login-wrapper .panel .login-form .login-fields {
+  width: 278px;
+}
+.login-body .login-wrapper .panel .login-form .login-fields .login-title {
+  color: #283252;
+  margin-bottom: 40px;
+  margin-top: 0;
+  text-align: center;
+}
+.login-body .login-wrapper .panel .login-form .login-fields .login-btn {
+  padding: 0.938rem 0rem 0.6rem;
+}
+.login-body .login-wrapper .panel .login-form .login-fields .forgot,
+.login-body .login-wrapper .panel .login-form .login-fields a {
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  color: $primary-color;
+}
+.login-body .login-wrapper .panel .login-form .login-fields .forgot:hover,
+.login-body .login-wrapper .panel .login-form .login-fields a:hover {
+  text-decoration: underline;
+  color: $primary-color;
+  cursor: pointer;
+}
+.login-body .login-wrapper .panel .login-form .login-error-content {
+  position: relative;
+}
+.login-body .login-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.login-body .login-footer .content-wrapper {
+  text-align: center;
+  color: #575858;
+  font-size: 12px;
+  font-weight: normal;
+}

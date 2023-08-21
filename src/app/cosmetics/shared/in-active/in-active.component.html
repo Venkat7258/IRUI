@@ -1,0 +1,20 @@
+
+<div class="modal-body modal-body-sm">
+    <div class="text-center">
+        <div class="avatar-md">
+            <div class="avatar-title">
+                <img class="inacive" src="../../../assets/img/ban.svg" width="50">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <h6> Are you sure you want to {{isActive==true?'active':'inactivate'}}?</h6>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary btn-no btn-radius"
+        (click)="activeModal.dismiss('Cross click')">No</button>
+        <button type="button" (click)="DeleteAction()" class="btn btn-outline-light btn-radius" >Yes</button>
+    </div>
+
+

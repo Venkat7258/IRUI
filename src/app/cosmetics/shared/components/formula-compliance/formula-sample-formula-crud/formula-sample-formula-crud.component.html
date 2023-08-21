@@ -1,0 +1,556 @@
+<div class="col-md-12 p-1">
+    <div Class="mb-1 p-10 breadcrumb-padding">
+        <div class="row ml-0">
+            <div class="col-md-6 p-l-0">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-custom">
+                        <li class="breadcrumb-item">
+                            <a href="" (click)="$event.preventDefault()">Formula Compliance</a>
+                        </li>
+                        <li aria-current="page" class="breadcrumb-item">
+                            <a
+                                [routerLink]="[!this.isSampleFormula ? '/cosmetics/formulacompliance/formulae':'/cosmetics/formulacompliance/sampleformula']">
+                                {{!this.isSampleFormula ? 'Formulae' : 'Sample Formula'}} </a>
+                        </li>
+                        <li aria-current="page" class="breadcrumb-item">
+                            <container_element [ngSwitch]="mode">
+                                <a *ngSwitchCase="'edit'">
+                                    {{this.isEdit ? 'Edit Formula': 'Add Formula'}}
+                                    <!-- {{this.isEdit ? 'Edit '+this.isSampleFormula ?'Sample Formula':''+'Formula': 'Add
+                                    '++this.isSampleFormula ?'Sample':''}} -->
+                                </a>
+                                <a *ngSwitchCase="'clone'">Clone Formula</a>
+                                <a *ngSwitchCase="'view'">View Formula</a>
+                            </container_element>
+                        </li>
+                        <li aria-current="page" class="breadcrumb-item breadcrumb-item-head active">
+                            {{stepsActiveIndex===0 ? 'Formula Details': 'Ingredient Details'}}
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6 p-r-0 justify-content-end ">
+                <ol class="breadcrumb breadcrumb-custom float-right">
+                    <li class="m-r-10 list-back ">
+                        <a
+                            [routerLink]="[!this.isSampleFormula ?'/cosmetics/formulacompliance/formulae':'/cosmetics/formulacompliance/sampleformula']">
+                            <i class="pi pi-arrow-circle-left"></i> Back </a>
+                    </li>
+                </ol>
+
+            </div>
+        </div>
+    </div>
+    <p-card>
+        <div class="col-md-12 p-0">
+            <form [formGroup]="addEditFormulaForm" autocomplete="off">
+                <div class="row ml-0 ">
+                    <div class="col-md-4 aligned_form p-l-0">
+                        <label>Formula Name/No :</label>
+                        <input pInputText [readonly]="isControlsDisabled" type="text" formControlName="formulaNo"
+                            placeholder="Formula Name/No *"
+                            [class.is-invalid]="formulaForm.formulaNo.invalid && (formulaForm.formulaNo.dirty || formulaForm.formulaNo.touched)">
+
+                        <!-- [style]="{ 'border-color': (formulaForm.formulaNo.invalid && (formulaForm.formulaNo.dirty || formulaForm.formulaNo.touched))===true ?'red':'' }" -->
+
+
+                    </div>
+                    <div class="col-md-8 aligned_form p-r-0">
+                        <label>Description :</label>
+                        <input pInputText [readonly]="isControlsDisabled" type="text" formControlName="description"
+                            placeholder="Description">
+                    </div>
+                </div>
+                <div class="m-t-10 m-b--3 step-background">
+                    <div class="col-md-12 m-t-10 p-0 ">
+                        <div *ngIf="stepsActiveIndex===0">
+
+                            <div class="row  m-t-10 p-0 ml-0">
+                                <div class="col-md-3 m-t-10 ">
+                                    <h4 class="heading-shadow m-b-5">Product Detail</h4>
+                                </div>
+                                <div class="col-md-9 m-t-10 text-right"
+                                    *ngIf="!isControlsDisabled && isProductTypeVisible">
+                                    <p-button (click)="showSupProductTypesList()"> View Product Types</p-button>
+                                </div>
+                            </div>
+                            <div class="row ml-0 p-0">
+                                <div class="col-md-3 m-t-5">
+                                    <label>Product Type</label>
+                                    <p-dropdown [options]="productTypes" formControlName="productType"
+                                        optionLabel="value" optionValue="value"
+                                        [class.is-invalid]="formulaForm.productType.invalid && (formulaForm.productType.dirty || formulaForm.productType.touched)"></p-dropdown>
+
+                                </div>
+                                <div class="col-md-3 m-t-5">
+                                    <label>Use Type</label>
+                                    <p-dropdown [options]="useTypes" formControlName="useType" optionLabel="value"
+                                        optionValue="value"
+                                        [class.is-invalid]="formulaForm.useType.invalid && (formulaForm.useType.dirty || formulaForm.useType.touched)"></p-dropdown>
+                                </div>
+                                <div class="col-md-3 m-t-5">
+                                    <label>Exposure Type</label>
+                                    <p-dropdown [options]="exposureTypes" formControlName="exposureType"
+                                        optionLabel="value" optionValue="value"
+                                        [class.is-invalid]="formulaForm.exposureType.invalid && (formulaForm.exposureType.dirty || formulaForm.exposureType.touched)"></p-dropdown>
+                                </div>
+                                <div class="col-md-3 m-t-5">
+                                    <label>Product Sub Type</label>
+                                    <p-dropdown [options]="productSubProductTypes" formControlName="productSubType"
+                                        optionLabel="value" optionValue="value"
+                                        [class.is-invalid]="formulaForm.productSubType.invalid && (formulaForm.productSubType.dirty || formulaForm.productSubType.touched)"></p-dropdown>
+
+
+
+                                </div>
+                                <div class="col-md-3 m-t-10">
+                                    <label>Retention Factor (Existing Value : {{retentionFactor_ExistingValue}})
+                                        *</label>
+                                    <input pInputText [readonly]="isControlsDisabled" type="text"
+                                        formControlName="retentionFactor"
+                                        [class.is-invalid]="formulaForm.retentionFactor.invalid && (formulaForm.retentionFactor.dirty || formulaForm.retentionFactor.touched)">
+                                </div>
+                                <div class="col-md-3 m-t-10">
+                                    <label style="font-size: 0.67rem;">Est. Amt. of Product Applied (Existing Value:
+                                        {{AmtOfProductApplied_ExistingValue}} g) *
+                                    </label>
+                                    <input pInputText [readonly]="isControlsDisabled" type="text"
+                                        formControlName="amountofProdApp"
+                                        [class.is-invalid]="formulaForm.amountofProdApp.invalid && (formulaForm.amountofProdApp.dirty || formulaForm.amountofProdApp.touched)">
+                                </div>
+                                <div class="col-md-3 m-t-10">
+                                    <label>Area of Application</label>
+                                    <div class="m-t-5 ">
+                                        <p claSS="font-12">
+                                            {{addEditFormulaForm.controls['areaOfApplication'].value}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 m-t-10">
+                                    <div class="form-group">
+                                        <label>Delivery Mechanism</label>
+                                        <div class="m-t-5 ">
+                                            <p claSS="font-12">
+                                                {{addEditFormulaForm.controls['deliveryMechanism'].value}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ml-0 p-0 mt-3">
+                                <div class="col-md-3">
+                                    <h4 class="heading-shadow m-b-5">Additional Product Detail</h4>
+                                </div>
+                            </div>
+                            <div class="row ml-0 p-0">
+                                <div class="col-md-3 m-t-5">
+                                    <label>Supplier Name</label>
+                                    <input pInputText [readonly]="isControlsDisabled" type="text"
+                                        formControlName="supplierName">
+                                </div>
+                                <div class="col-md-3 m-t-5">
+                                    <label>Brand Name</label>
+                                    <input pInputText [readonly]="isControlsDisabled" type="text"
+                                        formControlName="brandName">
+                                </div>
+                                <div class="col-md-3 m-t-5">
+                                    <label>Intended countries</label>
+                                    <input pInputText [readonly]="isControlsDisabled" type="text"
+                                        formControlName="intendedCountries">
+                                </div>
+                                <div class="col-md-3 m-t-5">
+                                    <label>Compliance</label>
+                                    <input pInputText [readonly]="isControlsDisabled" type="text"
+                                        formControlName="compliance">
+                                </div>
+                                <div class="col-md-3 m-t-10">
+                                    <label>Seasonal or AYR</label>
+                                    <p-dropdown [options]="seasonalAYRs" formControlName="seasonalorAYR"
+                                        optionLabel="text" optionValue="value"></p-dropdown>
+                                </div>
+                                <div class="col-md-3 m-t-10">
+                                    <label> Sourced Region</label>
+                                    <p-dropdown [options]="EUorAsiaSeasons" formControlName="eUorAsiaSeasoned"
+                                        optionLabel="text" optionValue="value"></p-dropdown>
+                                </div>
+                                <div class="col-md-3 m-t-10">
+                                    <label> Remarks</label>
+                                    <input pInputText [readonly]="isControlsDisabled" type="text"
+                                        formControlName="remarks">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p-dialog header="Product Types" [(visible)]="!isProductTypeVisible" [position]="position" [modal]="true"
+                [style]="{width: '98vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false"
+                [closable]="false">
+
+                <div class="row p-0 ml-0">
+                    <div class="col-md-12 p-0">
+                        <p-table [value]="subProductTypeList" [scrollable]="true" scrollHeight="350px"
+                            [(selection)]="selectedSupProductType" dataKey="id">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th></th>
+
+                                    <th [width]="120">
+                                        <div class="flex justify-content-between align-items-center">
+                                            Product type
+                                            <p-columnFilter type="text" field="productName" display="menu"
+                                                class="ml-auto"></p-columnFilter>
+                                        </div>
+
+                                    </th>
+                                    <th [width]="100">
+                                        <div class="flex justify-content-between align-items-center">
+                                            Use Type
+                                            <p-columnFilter type="text" field="useType" display="menu"
+                                                class="ml-auto"></p-columnFilter>
+                                        </div>
+                                    </th>
+                                    <th [width]="138">
+                                        <div class="flex justify-content-between align-items-center">
+                                            Exposure Type
+                                            <p-columnFilter type="text" field="exposureType" display="menu"
+                                                class="ml-auto"></p-columnFilter>
+                                        </div>
+                                    </th>
+                                    <th [width]="160">
+                                        <div class="flex justify-content-between align-items-center">
+                                            Product Sub Type
+                                            <p-columnFilter type="text" field="subProductName" display="menu"
+                                                class="ml-auto"></p-columnFilter>
+                                        </div>
+
+                                    </th>
+                                    <th [width]="170">
+                                        <div class="flex justify-content-between align-items-center">
+                                            Area of Application
+                                            <p-columnFilter type="text" field="areasOfApplicationName" display="menu"
+                                                class="ml-auto"></p-columnFilter>
+                                        </div>
+
+                                    </th>
+                                    <th [width]="175">
+                                        <div class="flex justify-content-between align-items-center">
+                                            Delivery Mechanism
+                                            <p-columnFilter type="text" field="deliveryMechanismName" display="menu"
+                                                class="ml-auto"></p-columnFilter>
+                                        </div>
+
+                                    </th>
+                                    <th [width]="175">
+                                        <div class="flex justify-content-between align-items-center">
+                                            Retention Factor
+                                            <p-columnFilter type="text" field="retensionFactor" display="menu"
+                                                class="ml-auto"></p-columnFilter>
+                                        </div>
+
+                                    </th>
+                                    <th [width]="180">
+                                        <div class="flex justify-content-between align-items-center">
+                                            Amount of Prod App
+                                            <p-columnFilter type="text" field="amountofProdApp" display="menu"
+                                                class="ml-auto"></p-columnFilter>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-productSubProduct let-rowIndex="rowIndex">
+                                <tr>
+                                    <td>
+                                        <p-tableRadioButton [value]="productSubProduct"
+                                            (onChange)="onproductSubProductSelect($event,productSubProduct.id)"></p-tableRadioButton>
+                                    </td>
+                                    <td> {{productSubProduct.productName}} </td>
+                                    <td> {{productSubProduct.useType}}</td>
+                                    <td> {{productSubProduct.exposureType}}</td>
+                                    <td> {{productSubProduct.subProductName}}</td>
+                                    <td> {{productSubProduct.areasOfApplicationName}}</td>
+                                    <td> {{productSubProduct.deliveryMechanismName}}</td>
+                                    <td> {{productSubProduct.retensionFactor}}</td>
+                                    <td> {{productSubProduct.amountofProdApp}} {{ productSubProduct.units}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
+                </div>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center m-t-10">
+                        <button class="b-width-85 m-r-10 fc-btn" (click)="setSelectedSubProductType()"
+                            *ngIf="selectedSupProductType!==null">Select</button>
+                        <button class="b-width-85 fc-btn" (click)="CancelSubProductType()">Cancel</button>
+                    </div>
+                </div>
+
+            </p-dialog>
+            <div *ngIf="stepsActiveIndex===1" class="step-background m-t--8">
+                <div class="row ml-0 p-t-10">
+                    <div class="col-md-3">
+                        <h4 class="heading-shadow m-b-5">Ingredient Details</h4>
+                    </div>
+                    <div class="col-md-9 text-right" *ngIf="showIngredient && !isControlsDisabled">
+                        <p-button label="Ingredients" icon="pi pi-plus" iconPos="left" (onClick)="HideIngredientList()"
+                            class="m-r-10"></p-button>
+                        <p-button label="Custom Ingredients" icon="pi pi-plus" iconPos="left"></p-button>
+                    </div>
+                </div>
+                <div class="row ml-0 m-t-10" *ngIf="showIngredient">
+                    <div class="col-md-12">
+                        <p-table [value]="formulaIngredients" [scrollable]="true" styleClass="p-datatable-sm"
+                            [(selection)]="selectedFormulaIngredients" dataKey="id">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th [width]="20">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th [width]="200">Ingredient Name</th>
+                                    <th [width]="150">Given Name</th>
+                                    <th [width]="100">CAS No</th>
+                                    <th [width]="70">DAP(%)</th>
+                                    <th [width]="80">Type</th>
+                                    <th [width]="200">Functions</th>
+                                    <th [width]="80">Percentage</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-formulaSpec let-rowIndex="rowIndex">
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="formulaSpec"></p-tableCheckbox>
+                                    </td>
+                                    <td> {{formulaSpec.ingredientName}} </td>
+                                    <td> {{formulaSpec.givenName}} </td>
+                                    <td> {{formulaSpec.casNo}} </td>
+                                    <td>
+                                        <input pInputText [readonly]="isControlsDisabled" type="number"
+                                            [value]="formulaSpec.dap"
+                                            (keyup)="update_FormulaIngredientsGrid('dap',$event,rowIndex)" />
+                                    </td>
+                                    <td> {{formulaSpec.csIngredientType}} </td>
+                                    <td class="d-flex align-items-center">
+                                        <input pInputText [readonly]="isControlsDisabled" type="text"
+                                            [value]="formulaSpec.ingredientFunctions"
+                                            (keyup)="update_FormulaIngredientsGrid('ingredientFunctions',$event,rowIndex)" />
+                                        <span>
+                                            <i (click)="showIngredientOtherFunction(rowIndex,'ingredientFunctions','|')"
+                                                class="m-l-10 pi pi-info-circle" data-placement="right"
+                                                pTooltip="View Function"
+                                                *ngIf="formulaSpec.functions!==null; else loggedOut">
+                                            </i>
+
+                                            <ng-template #loggedOut>
+                                                <i class="m-l-10 pi pi-info-circle" data-placement="right"
+                                                    pTooltip="No Functions Defined">
+                                                </i>
+                                            </ng-template>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <input pInputText [readonly]="isControlsDisabled" type="number"
+                                            [value]="formulaSpec.percentage"
+                                            (keyup)="update_FormulaIngredientsGrid('percentage',$event,rowIndex)" />
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
+                    <div class="col-md-12 m-t-10 justify-content-start" *ngIf="selectedFormulaIngredients.length>0">
+                        <button class="b-width-85 fc-btn m-r-10"
+                            (click)="removeSelectedFormulaIngredient()">Deleted</button>
+
+                    </div>
+                </div>
+                <div class="row ml-0" *ngIf="!showIngredient">
+                    <div class="col-md-12 m-t-10 m-b-5">
+                        <form [formGroup]="formulaIngredientSearchForm">
+                            <div class="row ml-0">
+                                <div class="col-md-3">
+                                    <p-dropdown [options]="searchlist" formControlName="SelectedColumn"
+                                        optionLabel="text" optionValue="value" placeholder="Select Search Field"
+                                        [class.is-invalid]="formulaIngredientSearchForm.controls['SelectedColumn'].invalid && (formulaIngredientSearchForm.controls['SelectedColumn'].dirty || formulaIngredientSearchForm.controls['SelectedColumn'].touched)"></p-dropdown>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <p-dropdown [options]="searchTypes" formControlName="SearchBy" optionLabel="text"
+                                        optionValue="value" placeholder="Select Search Type"
+                                        [class.is-invalid]="formulaIngredientSearchForm.controls['SearchBy'].invalid && (formulaIngredientSearchForm.controls['SearchBy'].dirty || formulaIngredientSearchForm.controls['SearchBy'].touched)"></p-dropdown>
+                                </div>
+                                <div class="col-md-6 p-r-0">
+                                    <div class="row">
+                                        <div class="col-md-6 p-r-0">
+                                            <input pInputText [readonly]="isControlsDisabled" type="text"
+                                                formControlName="SearchText" placeholder="Search Text"
+                                                [class.is-invalid]="formulaIngredientSearchForm.controls['SearchText'].invalid && (formulaIngredientSearchForm.controls['SearchText'].dirty || formulaIngredientSearchForm.controls['SearchText'].touched)">
+                                        </div>
+                                       
+                                        <div class="col-md-6 p-r-0 text-right">
+                                            <button class="b-width-85 fc-btn m-r-10"
+                                                (click)="ShowFormulaIngSearchResult()">Search <i class="pi pi pi-search"
+                                                    style="font-size: 2rem"></i></button>
+                                            <button class="b-width-85 fc-btn" (click)="ClearIngGrid()">Clear</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12 m-t-10">
+                        <!-- [paginator]="true" [rows]="10"
+                              [totalRecords]="totalRecords_2"
+                              [rowHover]="true"
+                              [customSort]="true" -->
+                        <p-table [value]="formulaIngSearchResult" [scrollable]="true" styleClass="p-datatable-sm"
+                            scrollHeight="400px" [(selection)]="selectedFIngForFinalization" dataKey="ingredientName">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th [width]="50"></th>
+                                    <th [width]="300">Ingredient Name</th>
+                                    <th [width]="500">View Names</th>
+                                    <th [width]="500">CAS No</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-ingredient let-rowIndex="rowIndex">
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="ingredient"></p-tableCheckbox>
+                                        <!-- <p-checkbox value="ingredient.isSelectedForFinalization"
+                                            (onChange)="onIngredientSelect($event,ingredient.id)"></p-checkbox> -->
+                                    </td>
+                                    <td>
+                                        {{ingredient.ingredientName}}
+                                    </td>
+                                    <td>
+                                        <span class="pi pi-eye"></span>
+                                    </td>
+                                    <td>
+                                        {{ingredient.casNo}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                    <div class="col-md-12 m-t-10 justify-content-start">
+
+                        <button class="b-width-85 fc-btn m-r-10" (click)="TempdataSaveIngredientsFormula()"
+                            *ngIf="selectedFIngForFinalization.length>0">Add Selected</button>
+                        <!-- <button class="b-width-85 fc-btn m-r-10" (click)="TempdataSaveIngredientsFormula()"
+                            *ngIf="isIngredientSelectedForFinalized">Add Selected</button> -->
+                    </div>
+                    <div class="col-md-12 m-t-10">
+                        <h4 class="heading-shadow m-b-10">Selected Ingredient</h4>
+                        <p-table [value]="_finalizedFormulaIngredientGrid"
+                            [(selection)]="selectedFinalizedFormulaIngredients" dataKey="ingredientName"
+                            [scrollable]="true" scrollHeight="400px">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th [width]="20">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th [width]="200">Ingredient Name</th>
+                                    <th [width]="150">Given Name</th>
+                                    <th [width]="100">CAS No</th>
+                                    <th [width]="70">DAP</th>
+                                    <th [width]="80">Type</th>
+                                    <th [width]="200">Functions</th>
+                                    <th [width]="80">Percentage</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-ingredient let-rowIndex="rowIndex">
+                                <tr>
+                                    <td>
+                                        <p-tableCheckbox [value]="ingredient"></p-tableCheckbox>
+                                        <!-- <p-checkbox name="groupname"
+                                            value={{ingredient.isSelectedForFinalization}}></p-checkbox> -->
+                                        <!-- (onChange)="onIngredientSelect($event,ingredient.id)" -->
+                                    </td>
+                                    <td> {{ingredient.ingredientName}} </td>
+                                    <td> {{ingredient.givenName}} </td>
+                                    <td> {{ingredient.casNo}} </td>
+                                    <td>
+                                        <input pInputText [readonly]="isControlsDisabled" type="number"
+                                            [value]="ingredient.dap"
+                                            (keyup)="update_finalizedFormulaIngredientsGrid('dap',$event,rowIndex)" />
+                                    </td>
+                                    <td> {{ingredient.csIngredientType}} </td>
+                                    <td class="d-flex align-items-center">
+                                        <input pInputText [readonly]="isControlsDisabled" type="text"
+                                            [value]="ingredient.ingredientFunctions"
+                                            (keyup)="update_finalizedFormulaIngredientsGrid('ingredientFunctions',$event,rowIndex)" />
+
+                                        <!-- *ngIf="ingredient.otherFunctions!=null" -->
+                                        <span>
+                                            <i (click)="showFinalizedIngOtherFunction(rowIndex,'ingredientFunctions','|')"
+                                                class="m-l-10 pi pi-info-circle" data-placement="right"
+                                                pTooltip="View Function"
+                                                *ngIf="ingredient.functions!==null; else loggedOut">
+                                            </i>
+
+                                            <ng-template #loggedOut>
+                                                <i class="m-l-10 pi pi-info-circle" data-placement="right"
+                                                    pTooltip="No Functions Defined">
+                                                </i>
+                                            </ng-template>
+                                        </span>
+
+                                    </td>
+                                    <td>
+                                        <input pInputText [readonly]="isControlsDisabled" type="number"
+                                            [value]="ingredient.percentage"
+                                            (keyup)="update_finalizedFormulaIngredientsGrid('percentage',$event,rowIndex)" />
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
+
+
+                    <div class="col-md-12 m-t-10">
+                        <div class="row ml-0">
+                            <div class="col-md-6 m-t-10 justify-content-start p-l-0">
+                                <button *ngIf="selectedFinalizedFormulaIngredients.length>0"
+                                    class="b-width-85 fc-btn m-r-10" type="button"
+                                    (click)="removeSelectedIngFromFinalizedIng()">Remove</button>
+                            </div>
+
+                            <div class="col-md-6 m-t-10 text-right">
+                                <button class="b-width-85 fc-btn m-r-10"
+                                    *ngIf="_finalizedFormulaIngredientGrid.length>0"
+                                    (click)="_OnAddedIngToFormulaIng()">Add to Formula</button>
+
+                                <button class="b-width-85 fc-btn" (click)="ShowIngredientList()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template pTemplate="footer" class="step-background">
+            <div class="row ml-0 justify-content-center">
+                <div class="col-md-6 text-center">
+
+                    <button (click)="prevPage()" class="b-width-85  m-r-10 fc-btn" *ngIf="stepsActiveIndex!=0"><i
+                            class="pi pi-angle-left"></i> Previous </button>
+                    <button label="Next" (click)="nextPage()" class="b-width-85  m-r-10 fc-btn" iconPos="right"
+                        *ngIf="stepsItems.length-1!==stepsActiveIndex">Next <i class="pi pi-angle-right"></i></button>
+
+                    <!-- [disabled]="addEditFormulaForm.invalid" -->
+                    <button (click)="SaveAllToFormula()" class="b-width-85 m-r-10 fc-btn"
+                        *ngIf="!isControlsDisabled">Save </button>
+                    <button class="b-width-85 fc-btn"
+                        [routerLink]="[!this.isSampleFormula ?'/cosmetics/formulacompliance/formulae':'/cosmetics/formulacompliance/sampleformula']">Cancel</button>
+
+                </div>
+            </div>
+        </ng-template>
+
+        <app-StringDataPopUpWithAction></app-StringDataPopUpWithAction>
+    </p-card>
+</div>

@@ -1,0 +1,22 @@
+<div class="modal-content">
+    <div class="modal-header primary-color">
+        <div class="col-md-11 text-center ">
+            <h5 class="modal-title text-center text-white" id="hName"> {{title}}</h5>
+        </div>
+        <div class="col-md-1 text-left p-r-0">
+            <button type="button" class="close text-white" data-dismiss="modal" (click)="closeModal()"
+            aria-label="Close">&times;</button>
+        </div>   
+    </div>
+    <div>
+        <div class="modal-body" style="height: calc(100vh - 120px) !important;">
+            <div class="col-md-12 p-0">
+                <ul class="line-height-list">
+                    <li *ngFor="let item of objModel.split(' | '); let i=index; ">
+                        {{item}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

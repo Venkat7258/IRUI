@@ -1,0 +1,61 @@
+<div *ngIf="isAddRuletypeCategories === true;then addandUpdateRuletypeCategories else viewRuletypeCategories"></div>
+<ng-template #addandUpdateRuletypeCategories>
+    <p-card>
+        <div class="col-md-12 p-0">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label class="block">Ruletype Id</label>
+                        <input type="number" [(ngModel)]="objRuletypeCategories.ruletypeId" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group field">
+                        <label for="username1" class="block">Category Type</label>
+                        <input type="text" [(ngModel)]="objRuletypeCategories.categoryType" pInputText />
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+                        <button class="b-width-85 m-r-10 fc-btn" type="button"
+                            (click)="  SaveAndUpdateRuletypeCategories(isaction==true?'Add':'Edit')">{{isaction==true?'Add':'Update'}}</button>
+                        <button class="b-width-85 m-r-10 fc-btn" type="button" (click)="onruletypeCategoriesClose()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</ng-template>
+<ng-template #viewRuletypeCategories>
+    <p-card>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- <p-checkbox value="" label="Show Disabled RuletypeCategories" (onChange)="ShowActiveRuletypeCategories($event)" ></p-checkbox> -->
+            </div>
+            <div class="col-md-6 m-b-10 text-right">
+                <!-- <button pButton type="button" icon="pi pi-plus" iconPos="left" label="Add Ruletype Categories"
+            (click)="AddAndUpdateRuletypeCategories('Add')"  class="p-button-outlined"></button> -->
+                <p-button label="Add RuletypeCategories" icon="pi pi-plus" iconPos="left"
+                    (onClick)="AddAndUpdateRuletypeCategories('Add')" class="m-r-10"></p-button>
+            </div>
+        </div>
+        <p-table [value]="ruletypeCategories">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>RuletypeId</th>
+                    <th>CategoryType</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-ruletypeCategories>
+                <tr>
+                    <td>{{ruletypeCategories.ruletypeId}}</td>
+                    <td>{{ruletypeCategories.categoryType}}</td>
+                    <td><p-splitButton label="Actions" [model]="RuletypeCategoriesItems"
+                            (onDropdownClick)="HandleActionsClickRuletypeCategories(ruletypeCategories,'ruletypeCategories')"
+                            styleClass="p-button-raised mr-2 mb-2"></p-splitButton></td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
+</ng-template>
